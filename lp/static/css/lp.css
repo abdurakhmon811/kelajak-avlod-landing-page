@@ -1,0 +1,502 @@
+@charset "UTF-8";
+
+/* HTML Elements */
+a {
+    transition: all 0.2s ease-in-out;
+}
+body {
+    padding-top: 80px;
+}
+p {
+    font-weight: 300;
+}
+
+/* Classes */
+.admin-navbar-col {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.admin-navbar-link {
+    color: #000;
+    font-size: 20px;
+    font-weight: 300;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+.admin-navbar-link:hover, .admin-navbar-link:active {
+    color: #000;
+    transform: scale(1.05);
+}
+.admin-navbar-row {
+    background: #fff;
+    margin: 0;
+    padding: 1.5rem;
+    width: 100%;
+}
+.admin-panel-container {
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 2rem;
+    color: #000;
+    height: fit-content;
+    margin-top: 4rem;
+    padding: 2rem;
+}
+.auth-link {
+    color: #000;
+    font-weight: 300;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+.auth-link:hover {
+    color: rgb(252, 80, 0);
+    text-shadow: 0 0 1.2rem rgb(252, 80, 0);
+    transform: scale(1.1);
+}
+.auth-link:active {
+    color: #000;
+    text-shadow: none;
+    transform: scale(1);
+}
+.btn, .btn:hover, .btn:active, .btn:focus {
+    border: none;
+}
+.btn-close, .btn-close:hover, .btn-close:active, .btn-close:focus {
+    box-shadow: none;
+}
+.btn-delete {
+    background-color: rgb(185, 0, 0);
+    border-radius: 1.5rem;
+    color: #fff;
+    font-weight: 300;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+.btn-delete:hover {
+    color: #fff;
+    transform: scale(1.1);
+}
+.btn-delete:active {
+    color: #fff;
+    transform: scale(1);
+}
+.btn-download {
+    background: rgb(228, 228, 0);
+    border: none;
+    border-radius: 2.3rem;
+    color: #000;
+    font-size: 20px;
+    font-weight: 300;
+    padding: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+.btn-download:hover, .btn-download:active {
+    color: #000;
+    transform: scale(1.05);
+}
+.btn-submit {
+    background-color: rgb(38, 189, 0);
+    border: none;
+    border-radius: 3rem;
+    color: #fff;
+    font-weight: 300;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+.btn-submit:hover {
+    color: #fff;
+    transform: scale(1.05);
+}
+.btn-submit:active {
+    box-shadow: none;
+    color: #fff;
+    transform: scale(1);
+}
+.disabled {
+    animation: none;
+    opacity: 50%;
+    pointer-events: none;
+}
+.down {
+    height: 80px;
+}
+@media only screen and (max-width: 576px) {
+    .down {
+        height: 60px;
+    }
+}
+.down-btn {
+    margin: auto;
+    margin-top: 4rem;
+    transition: all 0.2s ease-in-out;
+}
+.down-btn:hover {
+    transform: scale(1.1);
+}
+.down-btn:active {
+    transform: scale(1);
+}
+@media only screen and (max-width: 1236px) and (min-width: 768px) {
+    .down-btn {
+        margin-top: 1.5rem;
+    }
+}
+@media only screen and (max-width: 768px) and (min-width: 576px) {
+    .down-btn {
+        margin-top: 1rem;
+    }
+}
+@media only screen and (max-width: 576px) {
+    .down-btn {
+        margin-top: 0.7rem;
+    }
+}
+.error {
+    color: red;
+    display: none;
+}
+.error-response-text {
+    color: rgb(185, 0, 0);
+    font-weight: bold;
+    text-shadow: 0 0 1.2rem rgb(185, 0, 0);
+}
+.file-input {
+    display: none;
+}
+.file-input-label {
+    border: 1px solid #000;
+    border-radius: 0.3rem;
+    color: #000;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 300;
+    padding: 0.5rem;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+}
+.file-input-label:hover {
+    transform: scale(1.05);
+}
+.file-input-label:active {
+    transform: scale(1);
+}
+.footer-container {
+    background: #fff;
+    border: 3px solid yellow;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    color: #000;
+    margin: 0;
+    margin-bottom: 0;
+    margin-top: 4rem;
+    max-width: 100%;
+    padding: 3rem;
+    text-align: center;
+}
+.form-label {
+    color: #000;
+    font-weight: 300;
+}
+.format-button {
+    align-items: center;
+    border: none;
+    border-radius: 1rem;
+    display: flex;
+    padding: 0.5rem;
+    transition: all 0.2s ease-in-out;
+}
+.format-button:hover {
+    background-color: #ff572d;
+}
+.format-button:active {
+    background-color: #ff7653;
+}
+.format-buttons {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+.instruction-div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    object-fit: cover;
+    overflow-x: scroll;
+    width: 100%;
+}
+.instruction-img {
+    border-radius: 2rem;
+    max-height: 400px;
+    max-width: 700px;
+}
+.jumb {
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    height: 600px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+@media only screen and (max-width: 1250px) and (min-width: 1000px) {
+    .jumb {
+        height: 650px;
+    }
+}
+@media only screen and (max-width: 1000px) and (min-width: 640px) {
+    .jumb {
+        height: 700px;
+    }
+}
+@media only screen and (max-width: 640px) and (min-width: 540px) {
+    .jumb {
+        height: 750px;
+    }
+}
+@media only screen and (max-width: 540px) and (min-width: 420px) {
+    .jumb {
+        height: 850px;
+    }
+}
+@media only screen and (max-width: 420px) and (min-width: 370px) {
+    .jumb {
+        height: 950px;
+    }
+}
+@media only screen and (max-width: 370px) {
+    .jumb {
+        height: 1050px;
+    }
+}
+.main-image {
+    filter: brightness(50%);
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    width: 100%;
+}
+.main-image-overlay {
+    animation: gradient 12s ease infinite;
+    animation-direction: reverse;
+    height: 100%;
+    padding: 3rem;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+@media only screen and (max-width: 576px) {
+    .main-image-overlay {
+        padding: 2.5rem;
+    }
+}
+.main-info-form {
+    margin: auto;
+    max-width: 600px;
+}
+.main-info-input-div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.media {
+    height: 25px;
+    transition: all 0.2s ease-in-out;
+}
+.media:hover {
+    transform: scale(1.1) rotate(-15deg);
+}
+.media:active {
+    transform: scale(0.9);
+}
+.media-col {
+    margin-bottom: 0.2rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-top: 0.2rem;
+    max-width: fit-content;
+}
+.modal-content {
+    background: #fff;
+    border-radius: 1.5rem !important;
+}
+.modal-header {
+    padding: 1rem;
+}
+.navbar {
+    background: #fff;
+    border: none;
+    border-bottom: 3px solid yellow;
+    height: 80px;
+}
+.navbar a {
+    color: #000;
+}
+.navbar a:hover {
+    color: #000;
+    text-shadow: 0 0 1.2rem #000;
+}
+.navbar-brand {
+    margin: 0;
+}
+.popover {
+    background: #b8b8b8;
+    border: none;
+    border-radius: 0.7rem;
+    box-shadow: 0 0 1.5rem #000;
+    color: #000;
+}
+.popover-anchor {
+    color: #000;
+    text-decoration: solid !important;
+    transition: all 0.2s ease-in-out;
+}
+.popover-anchor:hover, .popover-anchor:active {
+    color: rgb(214, 214, 0);
+    transform: scale(1.1);
+}
+.popover-body {
+    background: transparent;
+    border: none;
+    color: #000;
+    font-weight: 300;
+}
+.popover-header {
+    background: transparent;
+}
+.product-container {
+    background: #fff;
+    border: 1px solid #fff;
+    border-radius: 2rem;
+    color: #000;
+    height: fit-content;
+    margin: auto;
+    margin-bottom: 4rem;
+    margin-top: 6rem;
+    padding: 3rem;
+    width: 100%;
+}
+.product-information {
+    font-size: 1.5rem;
+}
+@media only screen and (max-width: 768px) {
+    .product-container {
+        padding: 2rem;
+    }
+    .product-row {
+        flex-direction: column-reverse;
+    }
+}
+.register-div {
+    display: flex;
+    flex-direction: column;
+}
+.register-form {
+    max-width: 600px;
+}
+.register-input {
+    background-color: transparent;
+    border: 1px solid #000;
+    border-radius: 0.3rem;
+    color: #000;
+    font-weight: 300;
+    outline: none;
+    padding: 0.3rem;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+}
+.register-input::placeholder {
+    color: rgb(158, 158, 158);
+    font-weight: 300;
+}
+.register-input:hover, .register-input:focus {
+    transform: scale(1.05);
+}
+.select-option {
+    color: #000;
+    font-weight: 300;
+}
+.terms-checkbox {
+    min-width: 15px;
+    transition: all 0.2s ease-in-out;
+}
+.terms-checkbox:hover {
+    transform: scale(1.1);
+}
+.terms-checkbox:active {
+    transform: scale(0.9);
+}
+.terms-div {
+    align-items: center;
+    display: flex;
+}
+.text-format-panel {
+    align-items: center;
+    background-color: #ff3300;
+    border-bottom: none;
+    border-radius: 1.5rem;
+    box-shadow: 0 0 4rem #ff3300;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    justify-content: space-between;
+    margin: auto;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    overflow-x: hidden;
+    padding: 1rem;
+    width: 100%;
+}
+.welcome-text {
+    color: #fff;
+    font-weight: 300;
+}
+::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgb(133, 133, 133);
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(110, 110, 110);
+}
+::-webkit-scrollbar-track {
+    background-color: rgb(197, 197, 197);
+}
+
+/* IDs */
+#brand-container {
+    align-items: center;
+    display: flex;
+    justify-content: start;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    width: 100%;
+}
+@media only screen and (max-width: 576px) {
+    #brand-container {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+    }
+}
+#media-row {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    max-width: 100%;
+    padding-top: 2rem;
+}

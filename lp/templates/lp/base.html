@@ -1,0 +1,179 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Kelajak avlod{% endblock title %}</title>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/lp.css' %}">
+        <link rel="shortcut icon" href="{% static 'icons/favicon.png' %}">
+        <script language="JavaScript" type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+        <script language="JavaScript" type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+        <script>
+            !function(f,b,e,v,n,t,s)
+                {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t,s)}(window, document,'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+                fbq('init', '1322924301674674');
+                fbq('track', 'PageView');
+        </script>
+        <noscript>
+            <img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1322924301674674&ev=PageView&noscript=1"
+            />
+        </noscript>
+    </head>
+    <body id="lp_body">
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" id="navbar-main">
+            <div class="container-fluid" id="brand-container"></div>
+        </nav>
+        {% block content %}{% endblock content %}
+        <div class="modal fade" tabindex="-1" id="login-modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="fw-light mt-2 ms-2">Shaxsiy kabinetga kirish</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-start mb-3 ms-2 me-2">
+                            <label class="form-label fw-light" for="phone_number_login">
+                                Telefon raqam
+                            </label>
+                            <input class="register-input"
+                            name="phone_number"
+                            type="tel"
+                            placeholder="+998901234567"
+                            maxlength="13"
+                            id="phone_number_login">
+                        </div>
+                        <div class="text-start mb-2 ms-2 me-2">
+                            <label class="form-label fw-light" for="password_login">
+                                Parol
+                            </label>
+                            <input class="register-input"
+                            name="password"
+                            type="password"
+                            placeholder="********"
+                            id="password_login">
+                        </div>
+                        <p class="error fw-bold ms-2 mb-0" id="error">
+                            Telefon raqam yoki parol noto'g'ri kiritildi!
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <a type="button" class="btn-submit" onclick="return ValidateLoginForm()" id="login-btn">
+                            Kirish &raquo;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-container" id="footer-container"></div>
+    </body>
+    <script>
+        // Global variables or constants go here
+        const submit_btn = document.getElementById('login-btn');
+        
+        // Event based functions go here
+        jQuery.ajax({
+            url: '{% url "lp:get-main-information" %}',
+            type: 'GET',
+            dataType: 'json',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+            },
+            success: function (data) {
+                const brand_container = document.querySelector('#brand-container');
+                const footer = document.querySelector('#footer-container');
+                const download_btn = document.querySelector('#download-btn');
+                brand_container.innerHTML = data.brand;
+                footer.innerHTML = data.footer;
+                if (download_btn) {
+                    download_btn.href = data.book_link;
+                };
+            },
+        });
+
+        // Functions/methods go here
+        function ValidateLoginForm() {
+            var phone_number_valid = ValidateLoginPhoneNumber('#phone_number_login');
+            var password_valid = ValidateLoginPassword('#password_login');
+            
+            if (phone_number_valid && password_valid) {
+                $('#error').css('display', 'none');
+                jQuery.ajax({
+                    url: '{% url "users:signin" %}',
+                    type: 'POST',
+                    dataType: 'json',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                    data: {
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                        phone_number: $('#phone_number_login').val(),
+                        password: $('#password_login').val(),
+                    },
+                    success: function (data) {
+                        if (String(data.status) === 'signedin') {
+                            window.location.reload();
+                        };
+                    },
+                    error: function (error) {
+                        $('#phone_number_login').css('border-color', 'red');
+                        $('#password_login').css('border-color', 'red');
+                        $('#error').css('display', 'block');
+                        return false;
+                    },
+                });
+            } else {
+                $('#phone_number_login').css('border-color', 'red');
+                $('#password_login').css('border-color', 'red');
+                $('#error').css('display', 'block');
+                return false;
+            }
+        };
+
+        function ValidateLoginPassword(field) {
+            let value = String($(field).val());
+            if (
+                    value &&
+                    is_space_only(value) === false &&
+                    value.length >= 8
+            ) {
+                $(field).css('border-color', '#fff');
+                return true;
+            } else {
+                $(field).css('border-color', 'red');
+                return false;
+            };
+        };
+
+        function ValidateLoginPhoneNumber(field) {
+            let value = String($(field).val());
+            if (value.startsWith('+998') === true && isnumeric(value.slice(1)) === true && value.length === 13) {
+                $(field).css('border-color', '#fff');
+                return true;
+            } else {
+                $(field).css('border-color', 'red');
+                return false;
+            }
+        };
+
+        function is_space_only(string) {
+            return /^\s+$/.test(string);
+        };
+
+        function isnumeric(string) {
+            return /^\d+$/.test(string);
+        };
+    </script>
+</html>

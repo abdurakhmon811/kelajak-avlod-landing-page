@@ -1,0 +1,357 @@
+{% extends 'lp/base.html' %}
+{% load static %}
+{% load markdownify %}
+
+{% block content %}
+<div class="jumb">
+    {% if information.welcome_img %}
+        <img src="{{ information.welcome_img.url }}" class="main-image">
+    {% else %}
+        <img src="{% static 'images/welcome.jpg' %}" class="main-image">
+    {% endif %}
+    <div class="main-image-overlay">
+        <h2 class="fw-light text-light text-start display-5">
+            {{ information.title1|markdownify }}
+        </h2>
+        <h2 class="fw-light text-start text-light">
+            {{ information.title2|markdownify }}
+        </h2>
+        {% if user.is_authenticated %}
+            <h5 class="welcome-text text-start">
+                Sizni ko'rib turganimizdan xursandmiz, 
+                <strong id="user-text">{% get_name user.names 1 %}</strong>!
+            </h5>
+        {% endif %}
+        <h3 class="fw-light text-light text-start mt-5">
+            {{ information.about_company|markdownify }}
+        </h3>
+        <button type="button" class="btn down-btn" onclick="ScrollToPC(document.querySelector('.product-container'))">
+            <img src="{% static 'images/down.png' %}" class="down">
+        </button>
+    </div>
+</div>
+<div class="container product-container">
+    {% if user.is_authenticated %}
+        <h3>{{ information.product_title|markdownify }}</h3>
+        <p class="product-information fw-light">
+            {{ information.product_info|markdownify }}
+        </p>
+    {% endif %}
+    {% if not user.is_authenticated %}
+        <div class="product-row row">
+            <div class="col-md">
+                <form action="{% url 'users:register' %}" 
+                class="register-form" 
+                novalidate 
+                method="post"
+                id="register-form" onsubmit="return ValidateForm()">
+                    {% csrf_token %}
+                    <div class="register-div mt-3">
+                        <label class="form-label fw-light" for="names">
+                            FISh(Familiya Ism Sharif)<span style="color: red; font-weight: bold;">*</span>
+                        </label>
+                        <input class="register-input"
+                        name="names"
+                        type="text"
+                        placeholder="Boltayev Bolta Boltayevich"
+                        maxlength="180"
+                        id="names">
+                        <p class="error fw-light mb-0" id="names-error">FISh noto'g'ri kiritildi!</p>
+                    </div>
+                    <div class="register-div mt-3">
+                        <label class="form-label fw-light" for="phone_number">
+                            Telefon raqam<span style="color: red; font-weight: bold;">*</span>
+                        </label>
+                        <input class="register-input"
+                        name="phone_number"
+                        type="tel"
+                        placeholder="+998901234567"
+                        maxlength="13"
+                        id="phone_number">
+                        <p class="error fw-light mb-0" id="phone-number-error">Telefon raqam noto'g'ri kiritildi!</p>
+                        <p class="error fw-light mb-0" id="phone-number-exists-error">
+                            Kiritilgan telefon raqam orqali ro'yxatdan o'tilgan!
+                        </p>
+                    </div>
+                    <div class="register-div mt-3">
+                        <label class="form-label fw-light" for="address">
+                            Manzil<span style="color: red; font-weight: bold;">*</span>
+                        </label>
+                        <input class="register-input"
+                        name="address"
+                        type="text"
+                        placeholder="Qarshi shahri, X mahallasi Y ko`chasi Z-uy"
+                        maxlength="250"
+                        id="address">
+                        <p class="error fw-light mb-0" id="address-error">Manzil noto'g'ri kiritildi!</p>
+                    </div>
+                    <div class="register-div mt-3">
+                        <label class="form-label fw-light" for="email">
+                            Elektron pochta manzil(Ixtiyoriy)
+                        </label>
+                        <input class="register-input"
+                        name="email"
+                        type="email"
+                        placeholder="kelajakavlod@misol.com"
+                        id="email">
+                        <p class="error fw-light mb-0" id="email-error">Elektron pochta manzili noto'g'ri kiritildi!</p>
+                    </div>
+                    <div class="register-div mt-3">
+                        <label class="form-label fw-light" for="childs_class">
+                            Farzandingizni maktabi va sinfi<span style="color: red; font-weight: bold;">*</span>
+                        </label>
+                        <input class="register-input"
+                        name="childs_class"
+                        type="text"
+                        placeholder="XX-maktab, 3-V"
+                        maxlength="20"
+                        id="childs_class">
+                        <p class="error fw-light mb-0" id="childs-class-error">
+                            Farzandingizni maktabi va sinfi noto'g'ri kiritildi!
+                        </p>
+                    </div>
+                    <p class="fw-light mt-2">
+                        <span style="color: red; font-weight: bold;">*</span>Majburiy maydonlar
+                    </p>
+                    <div class="terms-div mt-3">
+                        <input class="form-check-input terms-checkbox"
+                        name="terms"
+                        type="checkbox"
+                        id="terms"
+                        checked>
+                        <label class="form-check-label fw-light ms-1" for="terms" id="terms-label">
+                            <a class="terms-link" href="{{ information.terms.url }}" download>
+                                Foydalanish shartlari
+                            </a> bilan tanishib chiqdim va barchasiga roziman
+                        </label>
+                    </div>
+                    <div class="mt-4">
+                        <button type="submit" 
+                        class="btn-submit"
+                        id="submit">
+                            Ro'yxatdan o'tish &raquo;
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md mt-3">
+                <p class="fw-light">Diqqat<span style="color: red; font-weight: bold;">!</span></p>
+                <p class="fw-light">
+                    Ma'lumotlarni to'ldirganda xavfsizlik uchun quyidagilar hisobga olinishini yodda tuting:
+                </p>
+                <p class="fw-light">
+                    1. Telefon raqami maydonida (+) belgisi va raqamlardan boshqa hech qanday belgilarga yo'l qo'yilmaydi.
+                </p>
+                <p class="fw-light">
+                    2. Manzil maydonida (-.,@`) belgilari, harflar va raqamlardan boshqa 
+                    hech qanday belgilarga yo'l qo'yilmaydi.
+                </p>
+                <p class="fw-light">
+                    3. Elektron pochta maydonida (.@-_) belgilari, harflar va raqamlardan boshqa 
+                    hech qanday belgilarga yo'l qo'yilmaydi.
+                </p>
+                <p class="fw-light">
+                    4. Farzandingizni maktabi va sinfi maydonida (-,.) belgilari, harflar va raqamlardan boshqa 
+                    hech qanday belgilarga yo'l qo'yilmaydi.
+                </p>
+                <p class="fw-light">
+                    Unutmang<span style="color: red; font-weight: bold;">!</span> Ma'lumotlaringiz bizga xizmat
+                    sifatimizni yaxshilish uchun xizmat qiladi va ularning xavfsizligi siz uchun ham biz uchun ham birdek
+                    muhim.
+                </p>
+            </div>
+        </div>
+    {% endif %}
+</div>
+<div class="container text-center w-100 p-5">
+    {% if user.is_authenticated %}
+        <a type="button" class="btn-download" id="download-btn" download>
+            Kitobni yuklash <img src="{% static 'icons/download-icon.png' %}" class="ms-2" height="20">
+        </a>
+    {% else %}
+        <a type="button" class="btn-download disabled" id="download-btn-disabled">
+            Kitobni yuklash <img src="{% static 'icons/download-icon.png' %}" class="ms-2" height="20">
+        </a>
+    {% endif %}
+</div>
+{% if user.is_authenticated %}
+    <div class="container product-container" style="margin-top: 4rem;">
+        <h3 class="fw-normal">Tez-tez so'raladigan savollar</h3>
+        {% for question in faq %}
+            <h6 class="fw-light">Savol: {{ question.question|markdownify }}</h6>
+            <h6 class="fw-light">Javob: {{ question.answer|markdownify }}</h6>
+        {% empty %}
+            <h3 class="fw-light text-center mt-5 mb-5">Ma'lumotlar mavjud emas...</h3>
+        {% endfor %}
+    </div>
+{% endif %}
+<script>
+    // Global variables or constants go here
+    var usernames = [];
+
+    // Event based functions go here
+    $(document).ready(function () {
+        let bold_texts = document.querySelectorAll('strong:not(#user-text)');
+        for (let i = 0; i < bold_texts.length; i++) {
+            let element = bold_texts[i]
+            let text = element.textContent;
+            element.innerHTML = "<u>" + text + "</u>";
+        };
+    });
+    jQuery.ajax({
+        url: '{% url "users:get-phone-numbers" %}',
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+        },
+        success: function (data) {
+            for (let i = 0; i < data.phone_numbers.length; i++) {
+                usernames.push(String(data.phone_numbers[i]));
+            };
+        },
+    });
+
+    // Functions/methods go here
+    function CheckTerms(field, label) {
+        var agreed = document.getElementById('terms').checked;
+        if (!agreed) {
+            $(field).css('border-color', 'red');
+            $(field).css('background-color', 'red');
+            $(label).css('color', 'red');
+            return false;
+        } else {
+            $(field).css('border-color', '');
+            $(field).css('background-color', '');
+            $(label).css('color', '#fff');
+            return true;
+        };
+    };
+
+    function ScrollToPC(element) {
+        element.scrollIntoView(
+            {
+                block: (window.innerWidth < 768) ? 'start':'center',
+                behavior: 'smooth',
+            }
+        );
+    };
+
+    function ValidateAddress(field, error) {
+        let value = String($(field).val());
+        if (
+                value &&
+                is_space_only(value) === false && 
+                value.length > 10
+        ) {
+            $(field).css('border-color', '#fff');
+            $(error).css('display', 'none');
+            return true;
+        } else {
+            $(field).css('border-color', 'red');
+            $(error).css('display', 'block');
+            return false;
+        };
+    };
+
+    function ValidateChildsClass(field, error) {
+        let value = String($(field).val());
+        if (
+                value &&
+                is_space_only(value) === false
+                && value.length > 5
+        ) {
+            $(field).css('border-color', '#fff');
+            $(error).css('display', 'none');
+            return true;
+        } else {
+            $(field).css('border-color', 'red');
+            $(error).css('display', 'block');
+            return false;
+        };
+    };
+
+    function ValidateEmail(field, error) {
+        let value = String($(field).val());
+        if (value) {
+            if (value.match(RegExp('@.')) && !value.match(/[^a-zA-Z0-9@.-_]/g) && value.length > 10) {
+                $(field).css('border-color', '#fff');
+                $(error).css('display', 'none');
+                return true;
+            } else {
+                $(field).css('border-color', 'red');
+                $(error).css('display', 'block');
+                return false;
+            };
+        } else {
+            return true;
+        };
+    };
+
+    function ValidateForm() {
+        var name_valid = ValidateName('#names', '#names-error');
+        var phone_number_valid = ValidatePhoneNumber('#phone_number', '#phone-number-error');
+        var address_valid = ValidateAddress('#address', '#address-error');
+        var email_valid = ValidateEmail('#email', '#email-error');
+        var childs_class_valid = ValidateChildsClass('#childs_class', '#childs-class-error');
+        var agreed_to_terms = CheckTerms('#terms', '#terms-label');
+        
+        if (
+                name_valid && 
+                phone_number_valid && 
+                address_valid && 
+                email_valid && 
+                childs_class_valid &&
+                agreed_to_terms
+        ) {
+            if (usernames.includes(String($('#phone_number').val())) === false) {
+                return true
+            } else {
+                $('#phone_number').css('border-color', 'red');
+                $('#phone-number-exists-error').css('display', 'block');
+                return false;
+            }
+        } else {
+            return false;
+        }
+    };
+
+    function ValidateName(field, error) {
+        let value = String($(field).val());
+        if (
+                value &&
+                is_space_only(value) === false &&
+                value.split(' ').length > 2
+        ) {
+            $(field).css('border-color', '#fff');
+            $(error).css('display', 'none');
+            return true;
+        } else {
+            $(field).css('border-color', 'red');
+            $(error).css('display', 'block');
+            return false;
+        };
+    };
+
+    function ValidatePhoneNumber(field, error) {
+        let value = String($(field).val());
+        if (value.startsWith('+998') === true && isdigit(value.slice(1)) === true && value.length === 13) {
+            $(field).css('border-color', '#fff');
+            $(error).css('display', 'none');
+            return true;
+        } else {
+            $(field).css('border-color', 'red');
+            $(error).css('display', 'block');
+            return false;
+        }
+    };
+
+    function is_space_only(string) {
+        return /^\s+$/.test(string);
+    };
+
+    function isdigit(string) {
+        return /^\d+$/.test(string);
+    };
+</script>
+{% endblock content %}

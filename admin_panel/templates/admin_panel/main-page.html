@@ -1,0 +1,1323 @@
+{% extends 'lp/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'admin_panel/includes/admin-navbar.html' %}
+<div class="container admin-panel-container">
+    <h2 class="fw-light mb-4">Ma'lumotlarni to'lidirish uchun qo'llanma</h3>
+    <h5 class="fw-light">
+        1. "Brend rasmi" maydoniga kompaniya brendining logotipi qo'yiladi va 
+        u logotip 1.1-rasmda ko'rsatilgan 1-sonli joyni egallaydi. Shuningdek, sahifaning quyi qismida ham joylashadi.<br>
+        ESLATMA: Brend logotipini qo'yganda uning balandligini ham moslashtirib belgilash zarur
+        sababi logotiplarning balandligi har xil bo'lishi mumkin!<br><br>
+        2. Sahifaning yuqorisida joylashgan kartochkaning orqa foni "Kartochka foni" maydonida beriladi.<br><br>
+        3. Orqa fonida rasm joylashgan va sahifaning yuqorisida joylashgan kartochkaning ustidagi 
+        2-sonli matn "Birinchi sarlavha" maydonida beriladi.<br><br>
+        4. Orqa fonida rasm joylashgan va sahifaning yuqorisida joylashgan kartochkaning ustidagi 
+        3-sonli matn "Ikkinchi sarlavha" maydonida beriladi.<br><br>
+        5. 3-sonli yozuv, ya'ni "Ikkinchi sarlavha" ostida esa kompaniya haqida ma'lumotlar kiritiladi va u 
+        "Kompaniya haqida" maydonida beriladi.<br><br>
+    </h5>
+    <div class="instruction-div">
+        <img src="{% static 'images/Instruction1.png' %}" class="instruction-img">
+        <p class="fw-light ms-4 mt-2"><cite>1.1-rasm</cite></cire></p>
+    </div>
+    <h5 class="fw-light mt-4">
+        6. 1.2-rasmda ko'rsatilgan 5-sonli matn o'rniga mahsulot haqidagi sarlavha kiritiladi va 
+        u "Mahsulot sarlavhasi" maydonida beriladi.<br><br>
+        7. 6-sonli matn o'rniga esa mahsulot tavfsifi kiritiladi va u "Mahsulot tavfsifi" maydonida beriladi.<br><br>
+    </h5>
+    <div class="instruction-div">
+        <img src="{% static 'images/Instruction2.png' %}" class="instruction-img">
+        <p class="fw-light ms-4 mt-2"><cite>1.2-rasm</cite></cire></p> 
+    </div>
+    <h5 class="fw-light mt-4">
+        8. 1.3-rasmda ko'rsatilgan 7-sonli tugmaga sotilayotgan kitob havolasi kiritiladi va buni eng
+        quyida joylashgan "Kitob haqida ma'lumotlar" bo'limida amalga oshirish mumkin.<br><br>
+        9. 8-sonli matnda kompaniyaning litsenziya raqami kiritiladi va u "Kompaniya litsenziyasi" 
+        maydonida beriladi.<br><br>
+        10. 9-sonli matnda kompaniya manzili kiritiladi va u "Kompaniya manzili" maydonida beriladi.<br><br>
+        11. 10-sonli matnda kompaniyaga oid bo'lgan shior yoki istalgan bir qisqa matn kiritish mumkin va u 
+        "Futer matni" maydonida beriladi.<br><br>
+        12. 11-sonli qismda bog'lanish uchun ijtimoiy tarmoqlarning belgilari va havolalari kiritiladi va buni 
+        quyiroqda joylashgan "Ijtimoiy tarmoq kiritish" bo'limida beriladi, mavjud ijtimoiy tarmoqlar esa
+        "Ijtimoiy tarmoqlar" maydonidan tanlanadi. Tanlanganlari asosiy sahifada aks etadi.<br><br>
+    </h5>
+    <div class="instruction-div">
+        <img src="{% static 'images/Instruction3.png' %}" class="instruction-img">
+        <p class="fw-light ms-4 mt-2"><cite>1.3-rasm</cite></cire></p>
+    </div>
+    <h3 class="fw-light text-center mt-3 mb-3">
+        ESLATMA<span style="color: red; font-weight: bold;">!</span> Biror bir ma'lumot kiritilmagan taqdirda, 
+        asosiy sahifada hech narsa ko'rinmaydi.
+    </h3>
+</div>
+<div class="container admin-panel-container mt-5">
+    <h2 class="fw-light mb-4">Asosiy ma'lumotlar</h2>
+    <div class="table-responsive">
+        {% if information %}
+            <table class="table fw-light">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Brend logotipi</th>
+                        <th scope="col">Brend logo balandligi</th>
+                        <th scope="col">Kartochka foni</th>
+                        <th scope="col">Birinchi sarlavha</th>
+                        <th scope="col">Ikkinchi sarlavha</th>
+                        <th scope="col">Kompaniya haqida</th>
+                        <th scope="col">Mahsulot sarlavhasi</th>
+                        <th scope="col">Mahsulot tavfsifi</th>
+                        <th scope="col">Foydalanish shartlari fayli</th>
+                        <th scope="col">Kompaniya rekvizitlari</th>
+                        <th scope="col">Futer matni</th>
+                        <th scope="col">Ijtimoiy tarmoqlar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for info in information %}
+                        <tr>
+                            <td>{{ info.id }}</td>
+                            <td>
+                                <a class="popover-anchor"
+                                type="button"
+                                role="button" 
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-placement="top"
+                                data-bs-title="Brend logotipi"
+                                data-bs-content="{% get_file_name info.brand %}">
+                                    Ko'rish
+                                </a>
+                            </td>
+                            <td>{{ info.brand_height }}</td>
+                            <td>
+                                <a class="popover-anchor"
+                                type="button"
+                                role="button" 
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-placement="top"
+                                data-bs-title="Kartochka foni"
+                                data-bs-content="{% get_file_name info.welcome_img %}">
+                                    Ko'rish
+                                </a>
+                            </td>
+                            <td>
+                                <a class="popover-anchor"
+                                type="button"
+                                role="button" 
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-placement="top"
+                                data-bs-title="Birinchi sarlavha"
+                                data-bs-content="{{ info.title1 }}">
+                                    Ko'rish
+                                </a>
+                            </td>
+                            <td>
+                                <a class="popover-anchor"
+                                type="button"
+                                role="button" 
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-placement="top"
+                                data-bs-title="Ikkinchi sarlavha"
+                                data-bs-content="{{ info.title2 }}">
+                                    Ko'rish
+                                </a>
+                            </td>
+                            <td>
+                                <a class="popover-anchor"
+                                type="button"
+                                role="button" 
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-placement="top"
+                                data-bs-title="Kompaniya haqida"
+                                data-bs-content="{{ info.about_company }}">
+                                    Ko'rish
+                                </a>
+                            </td>
+                            <td>
+                                <a class="popover-anchor"
+                                type="button"
+                                role="button" 
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-placement="top"
+                                data-bs-title="Mahsulot sarlavhasi"
+                                data-bs-content="{{ info.product_title }}">
+                                    Ko'rish
+                                </a>
+                            </td>
+                            <td>
+                                <a class="popover-anchor"
+                                type="button"
+                                role="button" 
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-placement="top"
+                                data-bs-title="Mahsulot haqida"
+                                data-bs-content="{{ info.product_info }}">
+                                    Ko'rish
+                                </a>
+                            </td>
+                            <td>
+                                <a class="popover-anchor"
+                                type="button"
+                                role="button" 
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-placement="top"
+                                data-bs-title="Foydalanish shartlari fayli"
+                                data-bs-content="{{ info.terms }}">
+                                    Ko'rish
+                                </a>
+                            </td>
+                            <td>
+                                <a class="popover-anchor"
+                                type="button"
+                                role="button" 
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-placement="top"
+                                data-bs-title="Kompaniya rekvizitlari"
+                                data-bs-content="{{ info.company_requisities }}">
+                                    Ko'rish
+                                </a>
+                            </td>
+                            <td>
+                                <a class="popover-anchor"
+                                type="button"
+                                role="button" 
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-placement="top"
+                                data-bs-title="Futer matni"
+                                data-bs-content="{{ info.footer_motto }}">
+                                    Ko'rish
+                                </a>
+                            </td>
+                            <td>
+                                {% for sm in info.media.all %}
+                                    {{ sm.name }}<br>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h4 class="fw-light text-center mt-3 mb-5">Ma'lumotlar mavjud emas</h4>
+        {% endif %}
+    </div>
+    <div class="text-center p-0 m-0 w-100">
+        <a class="btn-delete"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#delete-mi-modal">
+            O'chirish
+        </a>
+    </div>
+    <div class="modal fade" tabindex="-1" id="delete-mi-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="fw-light mt-2 ms-2">
+                        Asosiy ma'lumotlarni o'chirish uchun ularning ID raqamini kiriting
+                    </h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="ms-2 me-2">
+                        <label class="form-label text-start ms-1" for="info-id-for-deleting">
+                            ID
+                        </label>
+                        <input class="register-input"
+                        type="number"
+                        placeholder="*"
+                        id="info-id-for-deleting">
+                        <p class="error fw-bold mb-0" id="info-id-for-deleting-error">
+                            ID raqam noto'g'ri kiritildi!
+                        </p>
+                        <p class="error fw-bold mb-0" id="info-id-for-deleting-not-found-error">
+                            Kiritilgan ID raqamga mos ma'lumotlar mavjud emas!
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn-delete" id="btn-delete-info">
+                        O'chirish
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container admin-panel-container mt-5 mb-5">
+    <h2 class="fw-light text-center mb-4">Asosiy ma'lumotlarni kiritish</h3>
+    <form class="main-info-form" enctype="multipart/form-data" novalidate id="main-info-form">
+        {% csrf_token %}
+        <div class="main-info-input-div mb-3">
+            <label class="file-input-label" for="brand" id="brand-label">
+                <p class="mb-0" id="brand-p">Brend rasmi</p>
+                <img src="{% static 'icons/click.png' %}" height="25">
+                <input class="file-input"
+                type="file"
+                name="brand"
+                accept=".png, .jpg, .jpeg, .svg, .bmp"
+                id="brand">
+            </label>
+            <p class="error fw-light mb-0" id="brand-error">
+                Brend rasmi noto'g'ri kiritildi!(Mumkin formatlar: .png .jpg .jpeg .svg .bmp)
+            </p>
+        </div>
+        <div class="main-info-input-div mb-4">
+            <label class="form-label" for="brand-height">
+                Brend logotipi balandligi
+            </label>
+            <input class="register-input"
+            type="number"
+            name="brand_height"
+            placeholder="40"
+            id="brand-height">
+            <p class="error fw-light mb-0" id="brand-height-error">
+                Brend logotipi balandligi noto'g'ri kiritildi!
+            </p>
+        </div>
+        <div class="main-info-input-div mb-3">
+            <label class="file-input-label" for="welcome-img" id="welcome-img-label">
+                <p class="mb-0" id="welcome-img-p">Kartochka foni</p>
+                <img src="{% static 'icons/click.png' %}" height="25">
+                <input class="file-input"
+                type="file"
+                name="welcome_img"
+                accept=".png, .jpg, .jpeg, .svg, .bmp"
+                id="welcome-img">
+            </label>
+            <p class="error fw-light mb-0" id="welcome-img-error">
+                Kartochka foni noto'g'ri kiritildi!(Mumkin formatlar: .png .jpg .jpeg .svg .bmp)
+            </p>
+        </div>
+        <div class="main-info-input-div mb-3">
+            <label class="form-label" for="title1">
+                Birinchi sarlavha
+            </label>
+            <input class="register-input"
+            type="text"
+            name="title1"
+            placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+            maxlength="65"
+            id="title1">
+            <p class="error fw-light mb-0" id="title1-error">
+                Birinchi sarlavha noto'g'ri kiritildi!
+            </p>
+        </div>
+        <div class="main-info-input-div mb-3">
+            <label class="form-label" for="title2">
+                Ikkinchi sarlavha
+            </label>
+            <input class="register-input"
+            type="text"
+            name="title2"
+            placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+            maxlength="80"
+            id="title2">
+            <p class="error fw-light mb-0" id="title2-error">
+                Ikkinchi sarlavha noto'g'ri kiritildi!
+            </p>
+        </div>
+        <div class="main-info-input-div pb-4 mb-3">
+            <label class="form-label" for="about-company">
+                Kompaniya haqida
+            </label>
+            <textarea class="register-input"
+            rows="5"
+            name="about_company"
+            maxlength="440"
+            placeholder="{% lorem %}"
+            id="about-company"></textarea>
+            <p class="error fw-light mb-0" id="about-company-error">
+                Kompaniya haqidagi ma'lumotlar noto'g'ri kiritildi!
+            </p>
+        </div>
+        <div class="main-info-input-div mb-3">
+            <label class="form-label" for="product-title">
+                Mahsulot sarlavhasi
+            </label>
+            <input class="register-input"
+            type="text"
+            name="product_title"
+            placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+            maxlength="200"
+            id="product-title">
+            <p class="error fw-light mb-0" id="product-title-error">
+                Mahsulot sarlavhasi noto'g'ri kiritildi!
+            </p>
+        </div>
+        <div class="main-info-input-div pb-4 mb-3">
+            <label class="form-label" for="product-info">
+                Mahsulot haqida
+            </label>
+            <textarea class="register-input"
+            rows="5"
+            name="product_info"
+            placeholder="{% lorem %}"
+            id="product-info"></textarea>
+            <p class="error fw-light mb-0" id="product-info-error">
+                Mahsulot haqidagi ma'lumotlar noto'g'ri kiritildi!
+            </p>
+        </div>
+        <div class="main-info-input-div mb-3">
+            <label class="file-input-label" for="terms" id="terms-label">
+                <p class="mb-0" id="terms-p">Foydalanish shartlari fayli</p>
+                <img src="{% static 'icons/click.png' %}" height="25">
+                <input class="file-input"
+                type="file"
+                name="terms"
+                accept=".docx, .doc, .pdf, .pptx, .ppt"
+                id="terms">
+            </label>
+            <p class="error fw-light mb-0" id="terms-error">
+                Foydalanish shartlari fayli noto'g'ri kiritildi!(Mumkin formatlar: .docx .doc .pdf .pptx .ppt)
+            </p>
+        </div>
+        <div class="main-info-input-div mb-4">
+            <label class="form-label" for="company-requisities">
+                Kompaniya rekvizitlari
+            </label>
+            <input class="register-input"
+            type="text"
+            name="company_requisities"
+            placeholder="......."
+            id="company-requisities">
+            <p class="error fw-light mb-0" id="company-requisities-error">
+                Kompaniya rekvizitlari noto'g'ri kiritildi!
+            </p>
+        </div>
+        <div class="main-info-input-div mb-3">
+            <label class="form-label" for="footer-motto">
+                Futer matni
+            </label>
+            <input class="register-input"
+            type="text"
+            name="footer_motto"
+            placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+            maxlength="150"
+            id="footer-motto">
+            <p class="error fw-light mb-0" id="footer-motto-error">
+                Futer matni noto'g'ri kiritildi!
+            </p>
+        </div>
+        <div class="main-info-input-div">
+            <label class="form-label" for="socialmedia">
+                Ijtimoiy tarmoqlar
+            </label>
+            <select class="register-input fw-light" 
+            multiple 
+            aria-label="Default select example" 
+            name="socialmedia" 
+            id="socialmedia">
+                {% for sm in media %}
+                    <option class="select-option" value="{{ sm.id }}">{{ sm.name }}</option>
+                {% empty %}
+                    <option value="none" selected>---</option>
+                {% endfor %}
+            </select>
+            <p class="error fw-light mb-0" id="social-media-error">
+                Ijtimoiy tarmoqlar tanlanmadi!
+            </p>
+        </div>
+        <div class="text-center p-0 m-0 w-100">
+            <button type="submit" class="btn-submit mt-4">
+                Kiritish
+            </button>
+        </div>
+    </form>
+</div>
+<div class="container admin-panel-container mt-5">
+    <h2 class="fw-light mb-4">Ijtimoiy tarmoqlar</h2>
+    {% if media %}
+        <div class="table-responsive">
+            <table class="table fw-light">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 4%;">ID</th>
+                        <th scope="col" style="width: 32%;">Nomi</th>
+                        <th scope="col" style="width: 32%;">Belgi</th>
+                        <th scope="col" style="width: 32%;">Havola</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sm in media %}
+                        <tr>
+                            <td style="width: 4%;">
+                                {{ sm.id }}
+                            </td>
+                            <td style="width: 32%;">
+                                {{ sm.name }}
+                            </td>
+                            <td style="width: 32%;">
+                                {% get_file_name sm.icon %}
+                            </td>
+                            <td style="width: 32%;">
+                                {{ sm.link }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <h4 class="fw-light text-center mt-3 mb-5">Ma'lumotlar mavjud emas</h4>
+    {% endif %}
+    <div class="text-center p-0 m-0 w-100">
+        <a class="btn-delete"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#delete-sm-modal">
+            O'chirish
+        </a>
+    </div>
+    <div class="modal fade" tabindex="-1" id="delete-sm-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="fw-light mt-2 ms-2">
+                        Ijtimoiy tarmoqni o'chirish uchun uning ID raqamini kiriting
+                    </h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="ms-2 me-2">
+                        <label class="form-label text-start ms-1" for="sm-id-for-deleting">
+                            ID
+                        </label>
+                        <input class="register-input"
+                        type="number"
+                        placeholder="*"
+                        id="sm-id-for-deleting">
+                        <p class="error fw-bold mb-0" id="sm-id-for-deleting-error">
+                            ID raqam noto'g'ri kiritildi!
+                        </p>
+                        <p class="error fw-bold mb-0" id="sm-id-for-deleting-not-found-error">
+                            Kiritilgan ID raqamga mos ma'lumotlar mavjud emas!
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn-delete" id="btn-delete-sm">
+                        O'chirish
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container admin-panel-container mt-5 mb-5">
+    <h2 class="fw-light text-center mb-4">Ijtimoiy tarmoq kiritish</h3>
+    <form class="main-info-form" enctype="multipart/form-data" novalidate id="sm-form">
+        {% csrf_token %}
+        <div class="main-info-input-div mb-4">
+            <label class="form-label" for="sm-name">
+                Nomlanishi
+            </label>
+            <input class="register-input"
+            type="text"
+            name="name"
+            placeholder="Gmail/Instagram/Telegram..."
+            maxlength="50"
+            id="sm-name">
+            <p class="error fw-light mb-0" id="sm-name-error">
+                Nomlanishi noto'g'ri kiritildi!
+            </p>
+        </div>
+        <div class="main-info-input-div mb-3">
+            <label class="file-input-label" for="sm-icon" id="sm-icon-label">
+                <p class="mb-0" id="sm-icon-p">Belgi</p>
+                <img src="{% static 'icons/click.png' %}" height="25">
+                <input class="file-input"
+                type="file"
+                name="icon"
+                accept=".png, .jpg, .jpeg, .svg, .bmp"
+                id="sm-icon">
+            </label>
+            <p class="error fw-light mb-0" id="sm-icon-error">
+                Belgi noto'g'ri kiritildi!(Mumkin formatlar: .png .jpg .jpeg .svg .bmp)
+            </p>
+        </div>
+        <div class="main-info-input-div">
+            <label class="form-label" for="sm-link">
+                Havola
+            </label>
+            <input class="register-input"
+            type="text"
+            name="link"
+            placeholder="----"
+            maxlength="200"
+            id="sm-link">
+            <p class="error fw-light mb-0" id="sm-link-error">
+                Havola noto'g'ri kiritildi!
+            </p>
+        </div>
+        <div class="text-center p-0 m-0 w-100">
+            <button type="submit" class="btn-submit mt-4">
+                Kiritish
+            </button>
+        </div>
+    </form>
+</div>
+<div class="container admin-panel-container mt-5">
+    <h2 class="fw-light mb-4">Kitoblar</h2>
+    {% if books %}
+        <div class="table-responsive">
+            <table class="table fw-light">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 4%;">ID</th>
+                        <th scope="col" style="width: 48%;">Nomi</th>
+                        <th scope="col" style="width: 48%;">Fayl</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                        <tr>
+                            <td style="width: 4%;">
+                                {{ book.id }}
+                            </td>
+                            <td style="width: 48%;">
+                                {{ book.name }}
+                            </td>
+                            <td style="width: 48%;">
+                                {% get_file_name book.file %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <h4 class="fw-light text-center mt-3 mb-5">Ma'lumotlar mavjud emas</h4>
+    {% endif %}
+    <div class="text-center p-0 m-0 w-100">
+        <a class="btn-delete"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#delete-book-modal">
+            O'chirish
+        </a>
+    </div>
+    <div class="modal fade" tabindex="-1" id="delete-book-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="fw-light mt-2 ms-2">
+                        Kitobni o'chirish uchun uning ID raqamini kiriting
+                    </h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="ms-2 me-2">
+                        <label class="form-label text-start ms-1" for="book-id-for-deleting">
+                            ID
+                        </label>
+                        <input class="register-input"
+                        type="number"
+                        placeholder="*"
+                        id="book-id-for-deleting">
+                        <p class="error fw-bold mb-0" id="book-id-for-deleting-error">
+                            ID raqam noto'g'ri kiritildi!
+                        </p>
+                        <p class="error fw-bold mb-0" id="book-id-for-deleting-not-found-error">
+                            Kiritilgan ID raqamga mos ma'lumotlar mavjud emas!
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn-delete" id="btn-delete-book">
+                        O'chirish
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container admin-panel-container mt-5 mb-5">
+    <h2 class="fw-light text-center mb-4">Kitob kiritish</h3>
+    <form class="main-info-form" enctype="multipart/form-data" novalidate id="book-form">
+        {% csrf_token %}
+        <div class="main-info-input-div mb-4">
+            <label class="form-label" for="book-name">
+                Nomlanishi
+            </label>
+            <input class="register-input"
+            type="text"
+            name="name"
+            placeholder="----"
+            maxlength="50"
+            id="book-name">
+            <p class="error fw-light mb-0" id="book-name-error">
+                Nomlanishi noto'g'ri kiritildi!
+            </p>
+        </div>
+        <div class="main-info-input-div">
+            <label class="file-input-label" for="book-file" id="book-file-label">
+                <p class="mb-0" id="book-file-p">Kitob fayli</p>
+                <img src="{% static 'icons/click.png' %}" height="25">
+                <input class="file-input"
+                type="file"
+                name="file"
+                accept=".pdf"
+                id="book-file">
+            </label>
+            <p class="error fw-light mb-0" id="book-file-error">
+                Fayl noto'g'ri kiritildi!(Mumkin formatlar: .pdf)
+            </p>
+        </div>
+        <div class="text-center p-0 m-0 w-100">
+            <button type="submit" class="btn-submit mt-4">
+                Kiritish
+            </button>
+        </div>
+    </form>
+</div>
+<div class="container admin-panel-container mt-5">
+    <h2 class="fw-light mb-4">Tez-tez so'raladigan savollar</h2>
+    {% if faq %}
+        <div class="table-responsive">
+            <table class="table fw-light">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 4%;">ID</th>
+                        <th scope="col" style="width: 48%;">Savol</th>
+                        <th scope="col" style="width: 48%;">Javob</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for question in faq %}
+                        <tr>
+                            <td style="width: 4%;">
+                                {{ question.id }}
+                            </td>
+                            <td style="width: 48%;">
+                                {{ question.question }}
+                            </td>
+                            <td style="width: 48%;">
+                                {{ question.answer }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <h4 class="fw-light text-center mt-3 mb-5">Ma'lumotlar mavjud emas</h4>
+    {% endif %}
+    <div class="text-center p-0 m-0 w-100">
+        <a class="btn-delete"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#delete-faq-modal">
+            O'chirish
+        </a>
+    </div>
+    <div class="modal fade" tabindex="-1" id="delete-faq-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="fw-light mt-2 ms-2">
+                        Tez-tez so'raladigan savollarni uchun ularning ID raqamini kiriting
+                    </h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="ms-2 me-2">
+                        <label class="form-label text-start ms-1" for="faq-id-for-deleting">
+                            ID
+                        </label>
+                        <input class="register-input"
+                        type="number"
+                        placeholder="*"
+                        id="faq-id-for-deleting">
+                        <p class="error fw-bold mb-0" id="faq-id-for-deleting-error">
+                            ID raqam noto'g'ri kiritildi!
+                        </p>
+                        <p class="error fw-bold mb-0" id="faq-id-for-deleting-not-found-error">
+                            Kiritilgan ID raqamga mos ma'lumotlar mavjud emas!
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn-delete" id="btn-delete-faq">
+                        O'chirish
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container admin-panel-container mt-5 mb-5">
+    <h2 class="fw-light text-center mb-4">Tez-tez so'raladigan savol kiritish</h3>
+    <form class="main-info-form" enctype="multipart/form-data" novalidate id="faq-form">
+        {% csrf_token %}
+        <div class="main-info-input-div mb-4">
+            <label class="form-label" for="question">
+                Savol
+            </label>
+            <input class="register-input"
+            type="text"
+            name="question"
+            placeholder="----"
+            maxlength="400"
+            id="question">
+            <p class="error fw-light mb-0" id="question-error">
+                Savol noto'g'ri kiritildi!
+            </p>
+        </div>
+        <div class="main-info-input-div">
+            <label class="form-label" for="answer">
+                Javob
+            </label>
+            <textarea class="register-input"
+            rows="5"
+            name="answer"
+            placeholder="{% lorem %}"
+            id="answer"></textarea>
+            <p class="error fw-light mb-0" id="answer-error">
+                Javob noto'g'ri kiritildi!
+            </p>
+        </div>
+        <div class="text-center p-0 m-0 w-100">
+            <button type="submit" class="btn-submit mt-4">
+                Kiritish
+            </button>
+        </div>
+    </form>
+</div>
+<div class="text-format-panel fixed-bottom">
+    <p class="fw-light p-0 m-0">Text editor v1.0</p>
+    <div class="format-buttons">
+        <a type="button" class="format-button me-4" id="bold-text">
+            <img src="{% static 'icons/bold.png' %}" height="15">
+        </a>
+        <a type="button" class="format-button me-4" id="italic-text">
+            <img src="{% static 'icons/italic.png' %}" height="15">
+        </a>
+        <a type="button" class="format-button me-4" id="link-text">
+            <img src="{% static 'icons/link.png' %}" height="15">
+        </a>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="linkify-modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="fw-light mt-2 ms-2">
+                    Havolani kiriting
+                </h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="ms-2 me-2">
+                    <label class="form-label text-start ms-1" for="link-for-text">
+                        Havola
+                    </label>
+                    <input class="register-input"
+                    type="text"
+                    placeholder="*"
+                    id="link-for-text">
+                    <p class="error fw-bold mb-0" id="link-for-text-error">
+                        Havola noto'g'ri kiritildi!
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a type="button" class="btn-submit" id="linkify-btn">
+                    Kiritish
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Function-calls go here
+    ChangeInputLabelOnInput('#book-file', 'book-file-p');
+    ChangeInputLabelOnInput('#brand', 'brand-p');
+    ChangeInputLabelOnInput('#sm-icon', 'sm-icon-p');
+    ChangeInputLabelOnInput('#terms', 'terms-p');
+    ChangeInputLabelOnInput('#welcome-img', 'welcome-img-p');
+
+    // Event based functions go here
+    $(document).ready(function () {
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
+        NewLinify('about-company');
+        NewLinify('product-info');
+        NewLinify('answer');
+    });
+    $('#bold-text').on('click', function (e) {
+        Boldify('title1');
+        Boldify('title2');
+        Boldify('about-company');
+        Boldify('product-title');
+        Boldify('product-info');
+        Boldify('company-requisities');
+        Boldify('footer-motto');
+        Boldify('question');
+        Boldify('answer');
+    });
+    $('#book-form').on('submit', function (e) {
+        let check_data = [
+            Valid('#book-name', '#book-name-error', "a-zA-Z0-9\\s:/\\+$!?_*-"),
+            ValidateFileInput('#book-file', '#book-file-label', '#book-file-error', ['.pdf',]),
+        ];
+        if (check_data.includes(false)) {
+            return false;
+        } else {
+            e.preventDefault();
+            e.stopPropagation();
+            let data = new FormData(this);
+            PostMultipartData(
+                '{% url "admin_panel:add-book" %}',
+                'json',
+                data,
+                function (data) {
+                    if (data.status === 'added') {
+                        window.location.reload();
+                    };
+                },
+                function (error) {
+                    console.log('An error happened while POSTing the data!')
+                },
+            );
+        };
+    });
+    $('#btn-delete-book').on('click', function (e) {
+        let id_valid = Valid('#book-id-for-deleting', '#book-id-for-deleting-error', '0-9');
+        if (id_valid) {
+            GetData(
+                '{% url "admin_panel:delete-book" %}',
+                'json',
+                {
+                    id: $('#book-id-for-deleting').val(),
+                },
+                function (data) {
+                    if (data.status === 'deleted') {
+                        $('#book-id-for-deleting').css('border-color', '#fff');
+                        $('#book-id-for-deleting-not-found-error').css('display', 'none');
+                        window.location.reload();
+                    };
+                },
+                function (error) {
+                    if (error.status === 404) {
+                        $('#book-id-for-deleting').css('border-color', 'red');
+                        $('#book-id-for-deleting-not-found-error').css('display', 'block');
+                        console.log('Cannot find information with the id ' + String($('#book-id-for-deleting').val()) + '!');
+                    };
+                },
+            );
+        } else {
+            return false;
+        }
+    });
+    $('#btn-delete-faq').on('click', function (e) {
+        let id_valid = Valid('#faq-id-for-deleting', '#faq-id-for-deleting-error', '0-9');
+        if (id_valid) {
+            GetData(
+                '{% url "admin_panel:delete-faq" %}',
+                'json',
+                {
+                    id: $('#faq-id-for-deleting').val(),
+                },
+                function (data) {
+                    if (data.status === 'deleted') {
+                        $('#faq-id-for-deleting').css('border-color', '#fff');
+                        $('#faq-id-for-deleting-not-found-error').css('display', 'none');
+                        window.location.reload();
+                    };
+                },
+                function (error) {
+                    if (error.status === 404) {
+                        $('#faq-id-for-deleting').css('border-color', 'red');
+                        $('#faq-id-for-deleting-not-found-error').css('display', 'block');
+                        console.log('Cannot find information with the id ' + String($('#faq-id-for-deleting').val()) + '!');
+                    };
+                },
+            );
+        } else {
+            return false;
+        }
+    });
+    $('#btn-delete-info').on('click', function (e) {
+        let id_valid = Valid('#info-id-for-deleting', '#info-id-for-deleting-error', '0-9');
+        if (id_valid) {
+            GetData(
+                '{% url "admin_panel:delete-main-information" %}',
+                'json',
+                {
+                    id: $('#info-id-for-deleting').val(),
+                },
+                function (data) {
+                    if (data.status === 'deleted') {
+                        $('#info-id-for-deleting').css('border-color', '#fff');
+                        $('#info-id-for-deleting-not-found-error').css('display', 'none');
+                        window.location.reload();
+                    };
+                },
+                function (error) {
+                    if (error.status === 404) {
+                        $('#info-id-for-deleting').css('border-color', 'red');
+                        $('#info-id-for-deleting-not-found-error').css('display', 'block');
+                        console.log('Cannot find information with the id ' + String($('#info-id-for-deleting').val()) + '!');
+                    };
+                },
+            );
+        } else {
+            return false;
+        }
+    });
+    $('#btn-delete-sm').on('click', function (e) {
+        let id_valid = Valid('#sm-id-for-deleting', '#sm-id-for-deleting-error', '0-9');
+        if (id_valid) {
+            GetData(
+                '{% url "admin_panel:delete-media" %}',
+                'json',
+                {
+                    id: $('#sm-id-for-deleting').val(),
+                },
+                function (data) {
+                    if (data.status === 'deleted') {
+                        $('#sm-id-for-deleting').css('border-color', '#fff');
+                        $('#sm-id-for-deleting-not-found-error').css('display', 'none');
+                        window.location.reload();
+                    };
+                },
+                function (error) {
+                    if (error.status === 404) {
+                        $('#sm-id-for-deleting').css('border-color', 'red');
+                        $('#sm-id-for-deleting-not-found-error').css('display', 'block');
+                        console.log('Cannot find information with the id ' + String($('#sm-id-for-deleting').val()) + '!');
+                    };
+                },
+            );
+        } else {
+            return false;
+        }
+    });
+    $('#faq-form').on('submit', function (e) {
+        let check_data = [
+            Valid('#question', '#question-error', "a-zA-Z0-9\\s!-?:\\/;%@_+=.,*()[\]'`"),
+            Valid('#answer', '#answer-error', "a-zA-Z0-9\\s!-?:\\/;%@_+=.,*()[\]'`<>"),
+        ];
+        if (check_data.includes(false)) {
+            return false;
+        } else {
+            e.preventDefault();
+            e.stopPropagation();
+            let data = new FormData(this);
+            PostMultipartData(
+                '{% url "admin_panel:add-faq" %}',
+                'json',
+                data,
+                function (data) {
+                    if (data.status === 'added') {
+                        window.location.reload();
+                    };
+                },
+                function (error) {
+                    console.log('An error happened while POSTing the data!')
+                },
+            );
+        };
+    });
+    $('#italic-text').on('click', function (e) {
+        Italicize('title1');
+        Italicize('title2');
+        Italicize('about-company');
+        Italicize('product-title');
+        Italicize('product-info');
+        Italicize('company-requisities');
+        Italicize('footer-motto');
+        Italicize('question');
+        Italicize('answer');
+    });
+    $('#link-text').on('click', function (e) {
+        $('#linkify-modal').modal({show: false});
+        $('#linkify-modal').modal('show');
+    });
+    $('#linkify-btn').on('click', function (e) {
+        let link_valid = Valid('#link-for-text', '#link-for-text-error', 'a-zA-Z0-9!@#$%&*-_+=:./\\\\');
+        if (link_valid) {
+            $('#link-for-text').css('border-color', '#fff');
+            $('#link-for-text-error').css('display', 'none');
+            $('#linkify-modal').modal('hide');
+            Linkify('title1', String($('#link-for-text').val()));
+            Linkify('title2', String($('#link-for-text').val()));
+            Linkify('about-company', String($('#link-for-text').val()));
+            Linkify('product-title', String($('#link-for-text').val()));
+            Linkify('product-info', String($('#link-for-text').val()));
+            Linkify('company-requisities', String($('#link-for-text').val()));
+            Linkify('footer-motto', String($('#link-for-text').val()));
+            Linkify('question', String($('#link-for-text').val()));
+            Linkify('answer', String($('#link-for-text').val()));
+            document.getElementById('link-for-text').value = '';
+        } else {
+            $('#link-for-text').css('border-color', 'red');
+            $('#link-for-text-error').css('display', 'block');
+            return false;
+        }
+    });
+    $('#main-info-form').on('submit', function (e) {
+        let check_data = [
+            ValidateFileInput('#brand', '#brand-label', '#brand-error', ['.png', '.jpg', '.jpeg', '.svg', '.bmp']),
+            Valid('#brand-height', '#brand-height-error', '0-9.'),
+            ValidateFileInput(
+                '#welcome-img', 
+                '#welcome-img-label', 
+                '#welcome-img-error', 
+                ['.png', '.jpg', '.jpeg', '.svg', '.bmp']
+            ),
+            Valid('#title1', '#title1-error', "a-zA-Z0-9\\s!-?:\\/;%@_+=.,*()[\]'`"),
+            Valid('#title2', '#title2-error', "a-zA-Z0-9\\s!-?:\\/;%@_+=.,*()[\]'`"),
+            Valid('#about-company', '#about-company-error', "a-zA-Z0-9\\s!-?:\\/;%@_+=.,*()[\]'`<>"),
+            Valid('#product-title', '#product-title-error', "a-zA-Z0-9\\s!-?:\\/;%@_+=.,*()[\]'`"),
+            Valid('#product-info', '#product-info-error', "a-zA-Z0-9\\s!-?:\\/;%@_+=.,*()[\]'`<>"),
+            ValidateFileInput(
+                '#terms', 
+                '#terms-label', 
+                '#terms-error', 
+                ['.docx', '.doc', '.pdf', '.pptx', '.ppt']
+            ),
+            Valid('#company-requisities', '#company-requisities-error', "a-zA-Z0-9\\s!-?:\\/;%@_+=.,*()[\]'`"),
+            Valid('#footer-motto', '#footer-motto-error', "a-zA-Z0-9\\s!-?:\\/;%@_+=.,*()[\]'`"),
+            ValidateSelectInput('#socialmedia', '#social-media-error'),
+        ];
+        if (check_data.includes(false)) {
+            return false;
+        } else {
+            e.preventDefault();
+            e.stopPropagation();
+            let data = new FormData(this);
+            PostMultipartData(
+                '{% url "admin_panel:add-main-information" %}',
+                'json',
+                data,
+                function (data) {
+                    if (data.status === 'added') {
+                        window.location.reload();
+                    };
+                },
+                function (error) {
+                    console.log('An error happened while POSTing the data!')
+                },
+            );
+        }
+    });
+    $('#sm-form').on('submit', function (e) {
+        let check_data = [
+            Valid('#sm-name', '#sm-name-error', "a-zA-Z0-9\s_`'-"),
+            ValidateFileInput('#sm-icon', '#sm-icon-label', '#sm-icon-error', ['.png', '.jpg', '.jpeg', '.svg', '.bmp']),
+        ];
+        if (check_data.includes(false)) {
+            return false;
+        } else {
+            e.preventDefault();
+            e.stopPropagation();
+            let data = new FormData(this);
+            PostMultipartData(
+                '{% url "admin_panel:add-media" %}',
+                'json',
+                data,
+                function (data) {
+                    if (data.status === 'added') {
+                        window.location.reload();
+                    };
+                },
+                function (error) {
+                    console.log('An error happened while POSTing the data!')
+                },
+            );
+        }
+    });
+
+    // Functions/methods go here
+    function Boldify(element) {
+        let field = document.getElementById(element);
+        let oldValue = field.value;
+        if (
+                field.value && 
+                field.selectionStart !== undefined && 
+                field.selectionStart < field.selectionEnd
+        ) {
+            let startPos = field.selectionStart;
+            let endPos = field.selectionEnd;
+            let selectedText = field.value.substring(startPos, endPos).trim();
+            let output = String(oldValue.slice(0, startPos)) + '**' + selectedText + '**' + String(oldValue.slice(endPos));
+            field.value = output;
+        };
+    };
+
+    function ChangeInputLabelOnInput(field, label) {
+        $(field).on('input', function (e) {
+            let file = $(this).val().split("\\");
+            document.getElementById(label).innerText = file.slice(-1);
+        });
+    };
+
+    function GetData(url, dataType, input, on_success, on_error) {
+        jQuery.ajax({
+            url: url,
+            type: 'GET',
+            dataType: dataType,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+            },
+            data: input,
+            success: function (data) {
+                on_success(data);
+            },
+            error: function (error) {
+                on_error(error);
+            },
+        });
+    };
+
+    function Italicize(element) {
+        let field = document.getElementById(element);
+        let oldValue = field.value;
+        if (
+                field.value && 
+                field.selectionStart !== undefined && 
+                field.selectionStart < field.selectionEnd
+        ) {
+            let startPos = field.selectionStart;
+            let endPos = field.selectionEnd;
+            let selectedText = field.value.substring(startPos, endPos).trim();
+            let output = String(oldValue.slice(0, startPos)) + '_' + selectedText + '_' + String(oldValue.slice(endPos));
+            field.value = output;
+        };
+    };
+
+    function Linkify(element, url) {
+        let field = document.getElementById(element);
+        let oldValue = field.value;
+        if (
+                field.value && 
+                field.selectionStart !== undefined && 
+                field.selectionStart < field.selectionEnd
+        ) {
+            let startPos = field.selectionStart;
+            let endPos = field.selectionEnd;
+            let selectedText = field.value.substring(startPos, endPos).trim();
+            let output1 = String(oldValue.slice(0, startPos)) + '[' + selectedText + ']';
+            let output2 = '(' + String(url) + ')' + String(oldValue.slice(endPos));
+            field.value = output1 + output2;
+        };
+    };
+
+    function PostMultipartData(url, dataType, input, on_success, on_error) {
+        jQuery.ajax({
+            url: url,
+            type: 'POST',
+            dataType: dataType,
+            cache: false,
+            contentType: false,
+            processData: false,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+            },
+            data: input,
+            success: function (data) {
+                on_success(data);
+            },
+            error: function (error) {
+                on_error(error);
+            },
+        });
+    };
+
+    function Underlinify(element) {
+        let field = document.getElementById(element);
+        let oldValue = field.value;
+        if (
+                field.value && 
+                field.selectionStart !== undefined && 
+                field.selectionStart < field.selectionEnd
+        ) {
+            let startPos = field.selectionStart;
+            let endPos = field.selectionEnd;
+            let selectedText = field.value.substring(startPos, endPos).trim();
+            let output = String(oldValue.slice(0, startPos)) + '__' + selectedText + '__' + String(oldValue.slice(endPos));
+            field.value = output;
+        };
+    };
+
+    function Valid(field, error, allowed) {
+        let value = $(field).val();
+        let not_allowed = RegExp("[^" + allowed + "]");
+        if (value && is_space_only(value) === false && not_allowed.test(value) === false) {
+            $(field).css('border-color', '#fff');
+            $(error).css('display', 'none');
+            return true;
+        } else {
+            $(field).css('border-color', 'red');
+            $(error).css('display', 'block');
+            return false;
+        };
+    };
+
+    function ValidateFileInput(field, label, error, allowed_formats) {
+        // The full path is C:\fakepath\file_name.xxx
+        let img = $(field).val().split('\\').slice(-1);
+        let invalid;
+        for (let i = 0; i < allowed_formats.length; i++) {
+            if ($(field).val() && String(img).toLowerCase().endsWith(allowed_formats[i])) {
+                $(label).css('border-color', '#fff');
+                $(error).css('display', 'none');
+                return true;
+            } else {
+                invalid = true;
+            };
+        };
+        $(label).css('border-color', 'red');
+        $(error).css('display', 'block');
+        return false;
+    };
+
+    function ValidateSelectInput(field, error) {
+        let selected = document.getElementById(field.replace('#', '')).selectedOptions;
+        if (selected !== null && selected !== undefined && selected.length > 0 && selectedElementNotEmpty(selected)) {
+            $(field).css('border-color', '#fff');
+            $(error).css('display', 'none');
+            return true;
+        } else {
+            $(field).css('border-color', 'red');
+            $(error).css('display', 'block');
+            return false;
+        };
+    };
+
+    function is_space_only(string) {
+        return /^\s+$/.test(string);
+    };
+
+    function selectedElementNotEmpty(array) {
+        let result;
+        for (let i = 0; i < array.length; i++) {
+            let arg = array[i];
+            if (arg && arg.value !== 'none') {
+                result = true;
+            } else {
+                result = false;
+            };
+        };
+        return result;
+    };
+</script>
+{% endblock content %}

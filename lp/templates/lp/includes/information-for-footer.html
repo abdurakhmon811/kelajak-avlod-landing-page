@@ -1,0 +1,58 @@
+{% load markdownify %}
+
+{% if information %}
+    {% if information.brand %}
+        <a href="/">
+            <img src="{{ information.brand.url }}" class="mb-3" height="{{ information.brand_height }}">
+        </a>
+    {% else %}
+        <h3 class="fw-light mb-3">KELAJAK AVLOD</h1>
+    {% endif %}
+    <p class="fw-light">Copyright {% now 'Y' %}&copy; - Kelajak avlod</p>
+    <p class="fw-light mx-auto" style="max-width: 600px;">
+        {{ information.company_requisities|markdownify }}
+    </p>
+    <p class="fw-light mx-auto" style="max-width: 600px;">
+        {{ information.footer_motto|markdownify }}
+    </p>
+    {% if not user.is_authenticated %}
+        <a type="button" class="auth-link" data-bs-toggle="modal" data-bs-target="#login-modal">
+            Kirish
+        </a>
+    {% else %}
+        {% if user.is_admin or user.is_superuser %}
+            <a type="button" class="auth-link me-3" href="{% url 'admin_panel:clients' %}">
+                Admin
+            </a>
+        {% endif %}
+        <a type="button" class="auth-link" href="{% url 'users:signout' %}">Chiqish</a>
+    {% endif %}
+    <div class="row" id="media-row">
+        {% for sm in media %}
+            <div class="col media-col">
+                {% if sm.name == 'Gmail' or sm.name == 'gmail' %}
+                    <a href="mailto:{{ sm.link }}">
+                        <img src="{{ sm.icon.url }}" class="media">
+                    </a>
+                {% else %}
+                    <a href="{{ sm.link }}">
+                        <img src="{{ sm.icon.url }}" class="media">
+                    </a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    {% if not user.is_authenticated %}
+        <a type="button" class="auth-link" data-bs-toggle="modal" data-bs-target="#login-modal">
+            Kirish
+        </a>
+    {% else %}
+        {% if user.is_admin or user.is_superuser %}
+            <a type="button" class="auth-link me-3" href="{% url 'admin_panel:clients' %}">
+                Admin
+            </a>
+        {% endif %}
+        <a type="button" class="auth-link" href="{% url 'users:signout' %}">Chiqish</a>
+    {% endif %}
+{% endif %}
