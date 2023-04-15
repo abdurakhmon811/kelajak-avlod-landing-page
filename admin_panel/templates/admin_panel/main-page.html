@@ -3,55 +3,6 @@
 
 {% block content %}
 {% include 'admin_panel/includes/admin-navbar.html' %}
-<div class="container admin-panel-container">
-    <h2 class="fw-light mb-4">Ma'lumotlarni to'lidirish uchun qo'llanma</h3>
-    <h5 class="fw-light">
-        1. "Brend rasmi" maydoniga kompaniya brendining logotipi qo'yiladi va 
-        u logotip 1.1-rasmda ko'rsatilgan 1-sonli joyni egallaydi. Shuningdek, sahifaning quyi qismida ham joylashadi.<br>
-        ESLATMA: Brend logotipini qo'yganda uning balandligini ham moslashtirib belgilash zarur
-        sababi logotiplarning balandligi har xil bo'lishi mumkin!<br><br>
-        2. Sahifaning yuqorisida joylashgan kartochkaning orqa foni "Kartochka foni" maydonida beriladi.<br><br>
-        3. Orqa fonida rasm joylashgan va sahifaning yuqorisida joylashgan kartochkaning ustidagi 
-        2-sonli matn "Birinchi sarlavha" maydonida beriladi.<br><br>
-        4. Orqa fonida rasm joylashgan va sahifaning yuqorisida joylashgan kartochkaning ustidagi 
-        3-sonli matn "Ikkinchi sarlavha" maydonida beriladi.<br><br>
-        5. 3-sonli yozuv, ya'ni "Ikkinchi sarlavha" ostida esa kompaniya haqida ma'lumotlar kiritiladi va u 
-        "Kompaniya haqida" maydonida beriladi.<br><br>
-    </h5>
-    <div class="instruction-div">
-        <img src="{% static 'images/Instruction1.png' %}" class="instruction-img">
-        <p class="fw-light ms-4 mt-2"><cite>1.1-rasm</cite></cire></p>
-    </div>
-    <h5 class="fw-light mt-4">
-        6. 1.2-rasmda ko'rsatilgan 5-sonli matn o'rniga mahsulot haqidagi sarlavha kiritiladi va 
-        u "Mahsulot sarlavhasi" maydonida beriladi.<br><br>
-        7. 6-sonli matn o'rniga esa mahsulot tavfsifi kiritiladi va u "Mahsulot tavfsifi" maydonida beriladi.<br><br>
-    </h5>
-    <div class="instruction-div">
-        <img src="{% static 'images/Instruction2.png' %}" class="instruction-img">
-        <p class="fw-light ms-4 mt-2"><cite>1.2-rasm</cite></cire></p> 
-    </div>
-    <h5 class="fw-light mt-4">
-        8. 1.3-rasmda ko'rsatilgan 7-sonli tugmaga sotilayotgan kitob havolasi kiritiladi va buni eng
-        quyida joylashgan "Kitob haqida ma'lumotlar" bo'limida amalga oshirish mumkin.<br><br>
-        9. 8-sonli matnda kompaniyaning litsenziya raqami kiritiladi va u "Kompaniya litsenziyasi" 
-        maydonida beriladi.<br><br>
-        10. 9-sonli matnda kompaniya manzili kiritiladi va u "Kompaniya manzili" maydonida beriladi.<br><br>
-        11. 10-sonli matnda kompaniyaga oid bo'lgan shior yoki istalgan bir qisqa matn kiritish mumkin va u 
-        "Futer matni" maydonida beriladi.<br><br>
-        12. 11-sonli qismda bog'lanish uchun ijtimoiy tarmoqlarning belgilari va havolalari kiritiladi va buni 
-        quyiroqda joylashgan "Ijtimoiy tarmoq kiritish" bo'limida beriladi, mavjud ijtimoiy tarmoqlar esa
-        "Ijtimoiy tarmoqlar" maydonidan tanlanadi. Tanlanganlari asosiy sahifada aks etadi.<br><br>
-    </h5>
-    <div class="instruction-div">
-        <img src="{% static 'images/Instruction3.png' %}" class="instruction-img">
-        <p class="fw-light ms-4 mt-2"><cite>1.3-rasm</cite></cire></p>
-    </div>
-    <h3 class="fw-light text-center mt-3 mb-3">
-        ESLATMA<span style="color: red; font-weight: bold;">!</span> Biror bir ma'lumot kiritilmagan taqdirda, 
-        asosiy sahifada hech narsa ko'rinmaydi.
-    </h3>
-</div>
 <div class="container admin-panel-container mt-5">
     <h2 class="fw-light mb-4">Asosiy ma'lumotlar</h2>
     <div class="table-responsive">
@@ -59,147 +10,101 @@
             <table class="table fw-light">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Brend logotipi</th>
-                        <th scope="col">Brend logo balandligi</th>
-                        <th scope="col">Kartochka foni</th>
-                        <th scope="col">Birinchi sarlavha</th>
-                        <th scope="col">Ikkinchi sarlavha</th>
-                        <th scope="col">Kompaniya haqida</th>
-                        <th scope="col">Mahsulot sarlavhasi</th>
-                        <th scope="col">Mahsulot tavfsifi</th>
-                        <th scope="col">Foydalanish shartlari fayli</th>
-                        <th scope="col">Kompaniya rekvizitlari</th>
-                        <th scope="col">Futer matni</th>
-                        <th scope="col">Ijtimoiy tarmoqlar</th>
+                        <th scope="col" style="width: 4%;">ID</th>
+                        <th scope="col" style="width: 12%;">Brend logotipi</th>
+                        <th scope="col" style="width: 12%;">Brend logo balandligi</th>
+                        <th scope="col" style="width: 12%;">Sarlavha</th>
+                        <th scope="col" style="width: 12%;">Mahsulot sarlavhasi</th>
+                        <th scope="col" style="width: 12%;">Mahsulot tavfsifi</th>
+                        <th scope="col" style="width: 12%;">Kompaniya rekvizitlari</th>
+                        <th scope="col" style="width: 12%;">Futer matni</th>
+                        <th scope="col" style="width: 12%;">Ijtimoiy tarmoqlar</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for info in information %}
                         <tr>
-                            <td>{{ info.id }}</td>
+                            <td style="width: 4%;">{{ info.id }}</td>
                             <td>
                                 <a class="popover-anchor"
+                                tabindex="0"
                                 type="button"
                                 role="button" 
                                 data-bs-toggle="popover"
-                                data-bs-trigger="hover"
+                                data-bs-trigger="click"
                                 data-bs-placement="top"
                                 data-bs-title="Brend logotipi"
                                 data-bs-content="{% get_file_name info.brand %}">
                                     Ko'rish
                                 </a>
                             </td>
-                            <td>{{ info.brand_height }}</td>
-                            <td>
+                            <td style="width: 12%;">{{ info.brand_height }}</td>
+                            <td style="width: 12%;">
                                 <a class="popover-anchor"
+                                tabindex="0"
                                 type="button"
                                 role="button" 
                                 data-bs-toggle="popover"
-                                data-bs-trigger="hover"
+                                data-bs-trigger="click"
                                 data-bs-placement="top"
-                                data-bs-title="Kartochka foni"
-                                data-bs-content="{% get_file_name info.welcome_img %}">
+                                data-bs-title="Sarlavha"
+                                data-bs-content="{{ info.title }}">
                                     Ko'rish
                                 </a>
                             </td>
-                            <td>
+                            <td style="width: 12%;">
                                 <a class="popover-anchor"
+                                tabindex="0"
                                 type="button"
                                 role="button" 
                                 data-bs-toggle="popover"
-                                data-bs-trigger="hover"
-                                data-bs-placement="top"
-                                data-bs-title="Birinchi sarlavha"
-                                data-bs-content="{{ info.title1 }}">
-                                    Ko'rish
-                                </a>
-                            </td>
-                            <td>
-                                <a class="popover-anchor"
-                                type="button"
-                                role="button" 
-                                data-bs-toggle="popover"
-                                data-bs-trigger="hover"
-                                data-bs-placement="top"
-                                data-bs-title="Ikkinchi sarlavha"
-                                data-bs-content="{{ info.title2 }}">
-                                    Ko'rish
-                                </a>
-                            </td>
-                            <td>
-                                <a class="popover-anchor"
-                                type="button"
-                                role="button" 
-                                data-bs-toggle="popover"
-                                data-bs-trigger="hover"
-                                data-bs-placement="top"
-                                data-bs-title="Kompaniya haqida"
-                                data-bs-content="{{ info.about_company }}">
-                                    Ko'rish
-                                </a>
-                            </td>
-                            <td>
-                                <a class="popover-anchor"
-                                type="button"
-                                role="button" 
-                                data-bs-toggle="popover"
-                                data-bs-trigger="hover"
+                                data-bs-trigger="click"
                                 data-bs-placement="top"
                                 data-bs-title="Mahsulot sarlavhasi"
                                 data-bs-content="{{ info.product_title }}">
                                     Ko'rish
                                 </a>
                             </td>
-                            <td>
+                            <td style="width: 12%;">
                                 <a class="popover-anchor"
+                                tabindex="0"
                                 type="button"
                                 role="button" 
                                 data-bs-toggle="popover"
-                                data-bs-trigger="hover"
+                                data-bs-trigger="click"
                                 data-bs-placement="top"
                                 data-bs-title="Mahsulot haqida"
                                 data-bs-content="{{ info.product_info }}">
                                     Ko'rish
                                 </a>
                             </td>
-                            <td>
+                            <td style="width: 12%;">
                                 <a class="popover-anchor"
+                                tabindex="0"
                                 type="button"
                                 role="button" 
                                 data-bs-toggle="popover"
-                                data-bs-trigger="hover"
-                                data-bs-placement="top"
-                                data-bs-title="Foydalanish shartlari fayli"
-                                data-bs-content="{{ info.terms }}">
-                                    Ko'rish
-                                </a>
-                            </td>
-                            <td>
-                                <a class="popover-anchor"
-                                type="button"
-                                role="button" 
-                                data-bs-toggle="popover"
-                                data-bs-trigger="hover"
+                                data-bs-trigger="click"
                                 data-bs-placement="top"
                                 data-bs-title="Kompaniya rekvizitlari"
                                 data-bs-content="{{ info.company_requisities }}">
                                     Ko'rish
                                 </a>
                             </td>
-                            <td>
+                            <td style="width: 12%;">
                                 <a class="popover-anchor"
+                                tabindex="0"
                                 type="button"
                                 role="button" 
                                 data-bs-toggle="popover"
-                                data-bs-trigger="hover"
+                                data-bs-trigger="click"
                                 data-bs-placement="top"
                                 data-bs-title="Futer matni"
                                 data-bs-content="{{ info.footer_motto }}">
                                     Ko'rish
                                 </a>
                             </td>
-                            <td>
+                            <td style="width: 12%;">
                                 {% for sm in info.media.all %}
                                     {{ sm.name }}<br>
                                 {% endfor %}
@@ -257,177 +162,245 @@
     </div>
 </div>
 <div class="container admin-panel-container mt-5 mb-5">
-    <h2 class="fw-light text-center mb-4">Asosiy ma'lumotlarni kiritish</h3>
-    <form class="main-info-form" enctype="multipart/form-data" novalidate id="main-info-form">
-        {% csrf_token %}
-        <div class="main-info-input-div mb-3">
-            <label class="file-input-label" for="brand" id="brand-label">
-                <p class="mb-0" id="brand-p">Brend rasmi</p>
-                <img src="{% static 'icons/click.png' %}" height="25">
-                <input class="file-input"
-                type="file"
-                name="brand"
-                accept=".png, .jpg, .jpeg, .svg, .bmp"
-                id="brand">
-            </label>
-            <p class="error fw-light mb-0" id="brand-error">
-                Brend rasmi noto'g'ri kiritildi!(Mumkin formatlar: .png .jpg .jpeg .svg .bmp)
-            </p>
+    <div class="row admin-panel-row">
+        <div class="col-xl">
+            <h2 class="fw-light text-center mb-4">Asosiy ma'lumotlarni kiritish</h3>
+            <form class="main-info-form" enctype="multipart/form-data" novalidate id="main-info-form">
+                {% csrf_token %}
+                <div class="main-info-input-div mb-3">
+                    <label class="file-input-label" for="brand" id="brand-label">
+                        <p class="mb-0" id="brand-p">Brend rasmi</p>
+                        <img src="{% static 'icons/click.png' %}" height="25">
+                        <input class="file-input"
+                        type="file"
+                        name="brand"
+                        accept=".png, .jpg, .jpeg, .svg, .bmp"
+                        id="brand">
+                    </label>
+                    <p class="error fw-light mb-0" id="brand-error">
+                        Brend rasmi noto'g'ri kiritildi!(Mumkin formatlar: .png .jpg .jpeg .svg .bmp)
+                    </p>
+                </div>
+                <div class="main-info-input-div mb-4">
+                    <label class="form-label" for="brand-height">
+                        Brend logotipi balandligi
+                    </label>
+                    <input class="register-input"
+                    type="number"
+                    name="brand_height"
+                    placeholder="40"
+                    id="brand-height">
+                    <p class="error fw-light mb-0" id="brand-height-error">
+                        Brend logotipi balandligi noto'g'ri kiritildi!
+                    </p>
+                </div>
+                <div class="main-info-input-div mb-3">
+                    <label class="form-label" for="title">
+                        Sarlavha
+                    </label>
+                    <input class="register-input"
+                    type="text"
+                    name="title"
+                    placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+                    maxlength="200"
+                    id="title">
+                    <p class="error fw-light mb-0" id="title-error">
+                        Sarlavha noto'g'ri kiritildi!
+                    </p>
+                </div>
+                <div class="main-info-input-div mb-3">
+                    <label class="form-label" for="product-title">
+                        Mahsulot sarlavhasi
+                    </label>
+                    <input class="register-input"
+                    type="text"
+                    name="product_title"
+                    placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+                    maxlength="300"
+                    id="product-title">
+                    <p class="error fw-light mb-0" id="product-title-error">
+                        Mahsulot sarlavhasi noto'g'ri kiritildi!
+                    </p>
+                </div>
+                <div class="main-info-input-div pb-4 mb-3">
+                    <label class="form-label" for="product-info">
+                        Mahsulot haqida
+                    </label>
+                    <textarea class="register-input"
+                    rows="5"
+                    name="product_info"
+                    placeholder="{% lorem %}"
+                    id="product-info"></textarea>
+                    <p class="error fw-light mb-0" id="product-info-error">
+                        Mahsulot haqidagi ma'lumotlar noto'g'ri kiritildi!
+                    </p>
+                </div>
+                <div class="main-info-input-div mb-4">
+                    <label class="form-label" for="company-requisities">
+                        Kompaniya rekvizitlari
+                    </label>
+                    <input class="register-input"
+                    type="text"
+                    name="company_requisities"
+                    placeholder="......."
+                    id="company-requisities">
+                    <p class="error fw-light mb-0" id="company-requisities-error">
+                        Kompaniya rekvizitlari noto'g'ri kiritildi!
+                    </p>
+                </div>
+                <div class="main-info-input-div mb-3">
+                    <label class="form-label" for="footer-motto">
+                        Futer matni
+                    </label>
+                    <input class="register-input"
+                    type="text"
+                    name="footer_motto"
+                    placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+                    maxlength="150"
+                    id="footer-motto">
+                    <p class="error fw-light mb-0" id="footer-motto-error">
+                        Futer matni noto'g'ri kiritildi!
+                    </p>
+                </div>
+                <div class="main-info-input-div">
+                    <label class="form-label" for="socialmedia">
+                        Ijtimoiy tarmoqlar
+                    </label>
+                    <select class="register-input fw-light" 
+                    multiple 
+                    aria-label="Default select example" 
+                    name="socialmedia" 
+                    id="socialmedia">
+                        {% for sm in media %}
+                            <option class="select-option" value="{{ sm.id }}">{{ sm.name }}</option>
+                        {% empty %}
+                            <option value="none" selected>---</option>
+                        {% endfor %}
+                    </select>
+                    <p class="error fw-light mb-0" id="social-media-error">
+                        Ijtimoiy tarmoqlar tanlanmadi!
+                    </p>
+                </div>
+                <div class="text-center p-0 m-0 w-100">
+                    <button type="submit" class="btn-submit mt-4">
+                        Kiritish
+                    </button>
+                </div>
+            </form>
         </div>
+        <div class="col-xl">
+            <div class="html-output" id="product-info-output">
+                <h3 class="text-center mb-0">Ma'lumotlar kiritilmagan</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container admin-panel-container mt-5">
+    <h2 class="fw-light mb-4">Kurs uchun o'rinlar</h2>
+    {% if places %}
+        <div class="table-responsive">
+            <table class="table fw-light">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 4%;">ID</th>
+                        <th scope="col" style="width: 48%;">Umumiy o'rinlar soni</th>
+                        <th scope="col" style="width: 48%;">Egallangan o'rinlar soni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for place in places %}
+                        <tr>
+                            <td style="width: 4%;">
+                                {{ place.id }}
+                            </td>
+                            <td style="width: 48%;">
+                                {{ place.available_places }}
+                            </td>
+                            <td style="width: 48%;">
+                                {{ place.booked_places }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <h4 class="fw-light text-center mt-3 mb-5">Ma'lumotlar mavjud emas</h4>
+    {% endif %}
+    <div class="text-center p-0 m-0 w-100">
+        <a class="btn-delete"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#delete-place-modal">
+            O'chirish
+        </a>
+    </div>
+    <div class="modal fade" tabindex="-1" id="delete-place-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="fw-light mt-2 ms-2">
+                        Kurs uchun o'rinni o'chirish uchun uning ID raqamini kiriting
+                    </h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="ms-2 me-2">
+                        <label class="form-label text-start ms-1" for="place-id-for-deleting">
+                            ID
+                        </label>
+                        <input class="register-input"
+                        type="number"
+                        placeholder="*"
+                        id="place-id-for-deleting">
+                        <p class="error fw-bold mb-0" id="place-id-for-deleting-error">
+                            ID raqam noto'g'ri kiritildi!
+                        </p>
+                        <p class="error fw-bold mb-0" id="place-id-for-deleting-not-found-error">
+                            Kiritilgan ID raqamga mos ma'lumotlar mavjud emas!
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn-delete" id="btn-delete-place">
+                        O'chirish
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container admin-panel-container mt-5 mb-5">
+    <h2 class="fw-light text-center mb-4">Kurs uchun o'rin kiritish</h3>
+    <form class="main-info-form" enctype="multipart/form-data" novalidate id="places-form">
+        {% csrf_token %}
         <div class="main-info-input-div mb-4">
-            <label class="form-label" for="brand-height">
-                Brend logotipi balandligi
+            <label class="form-label" for="available-places">
+                Umumiy o'rinlar soni
             </label>
             <input class="register-input"
             type="number"
-            name="brand_height"
-            placeholder="40"
-            id="brand-height">
-            <p class="error fw-light mb-0" id="brand-height-error">
-                Brend logotipi balandligi noto'g'ri kiritildi!
-            </p>
-        </div>
-        <div class="main-info-input-div mb-3">
-            <label class="file-input-label" for="welcome-img" id="welcome-img-label">
-                <p class="mb-0" id="welcome-img-p">Kartochka foni</p>
-                <img src="{% static 'icons/click.png' %}" height="25">
-                <input class="file-input"
-                type="file"
-                name="welcome_img"
-                accept=".png, .jpg, .jpeg, .svg, .bmp"
-                id="welcome-img">
-            </label>
-            <p class="error fw-light mb-0" id="welcome-img-error">
-                Kartochka foni noto'g'ri kiritildi!(Mumkin formatlar: .png .jpg .jpeg .svg .bmp)
-            </p>
-        </div>
-        <div class="main-info-input-div mb-3">
-            <label class="form-label" for="title1">
-                Birinchi sarlavha
-            </label>
-            <input class="register-input"
-            type="text"
-            name="title1"
-            placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
-            maxlength="65"
-            id="title1">
-            <p class="error fw-light mb-0" id="title1-error">
-                Birinchi sarlavha noto'g'ri kiritildi!
-            </p>
-        </div>
-        <div class="main-info-input-div mb-3">
-            <label class="form-label" for="title2">
-                Ikkinchi sarlavha
-            </label>
-            <input class="register-input"
-            type="text"
-            name="title2"
-            placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
-            maxlength="80"
-            id="title2">
-            <p class="error fw-light mb-0" id="title2-error">
-                Ikkinchi sarlavha noto'g'ri kiritildi!
-            </p>
-        </div>
-        <div class="main-info-input-div pb-4 mb-3">
-            <label class="form-label" for="about-company">
-                Kompaniya haqida
-            </label>
-            <textarea class="register-input"
-            rows="5"
-            name="about_company"
-            maxlength="440"
-            placeholder="{% lorem %}"
-            id="about-company"></textarea>
-            <p class="error fw-light mb-0" id="about-company-error">
-                Kompaniya haqidagi ma'lumotlar noto'g'ri kiritildi!
-            </p>
-        </div>
-        <div class="main-info-input-div mb-3">
-            <label class="form-label" for="product-title">
-                Mahsulot sarlavhasi
-            </label>
-            <input class="register-input"
-            type="text"
-            name="product_title"
-            placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
-            maxlength="200"
-            id="product-title">
-            <p class="error fw-light mb-0" id="product-title-error">
-                Mahsulot sarlavhasi noto'g'ri kiritildi!
-            </p>
-        </div>
-        <div class="main-info-input-div pb-4 mb-3">
-            <label class="form-label" for="product-info">
-                Mahsulot haqida
-            </label>
-            <textarea class="register-input"
-            rows="5"
-            name="product_info"
-            placeholder="{% lorem %}"
-            id="product-info"></textarea>
-            <p class="error fw-light mb-0" id="product-info-error">
-                Mahsulot haqidagi ma'lumotlar noto'g'ri kiritildi!
-            </p>
-        </div>
-        <div class="main-info-input-div mb-3">
-            <label class="file-input-label" for="terms" id="terms-label">
-                <p class="mb-0" id="terms-p">Foydalanish shartlari fayli</p>
-                <img src="{% static 'icons/click.png' %}" height="25">
-                <input class="file-input"
-                type="file"
-                name="terms"
-                accept=".docx, .doc, .pdf, .pptx, .ppt"
-                id="terms">
-            </label>
-            <p class="error fw-light mb-0" id="terms-error">
-                Foydalanish shartlari fayli noto'g'ri kiritildi!(Mumkin formatlar: .docx .doc .pdf .pptx .ppt)
+            name="available_places"
+            placeholder="*"
+            maxlength="50"
+            id="available-places">
+            <p class="error fw-light mb-0" id="available-places-error">
+                Umumiy o'rinlar soni noto'g'ri kiritildi!
             </p>
         </div>
         <div class="main-info-input-div mb-4">
-            <label class="form-label" for="company-requisities">
-                Kompaniya rekvizitlari
+            <label class="form-label" for="booked-places">
+                Egallangan o'rinlar soni
             </label>
             <input class="register-input"
-            type="text"
-            name="company_requisities"
-            placeholder="......."
-            id="company-requisities">
-            <p class="error fw-light mb-0" id="company-requisities-error">
-                Kompaniya rekvizitlari noto'g'ri kiritildi!
-            </p>
-        </div>
-        <div class="main-info-input-div mb-3">
-            <label class="form-label" for="footer-motto">
-                Futer matni
-            </label>
-            <input class="register-input"
-            type="text"
-            name="footer_motto"
-            placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
-            maxlength="150"
-            id="footer-motto">
-            <p class="error fw-light mb-0" id="footer-motto-error">
-                Futer matni noto'g'ri kiritildi!
-            </p>
-        </div>
-        <div class="main-info-input-div">
-            <label class="form-label" for="socialmedia">
-                Ijtimoiy tarmoqlar
-            </label>
-            <select class="register-input fw-light" 
-            multiple 
-            aria-label="Default select example" 
-            name="socialmedia" 
-            id="socialmedia">
-                {% for sm in media %}
-                    <option class="select-option" value="{{ sm.id }}">{{ sm.name }}</option>
-                {% empty %}
-                    <option value="none" selected>---</option>
-                {% endfor %}
-            </select>
-            <p class="error fw-light mb-0" id="social-media-error">
-                Ijtimoiy tarmoqlar tanlanmadi!
+            type="number"
+            name="booked_places"
+            placeholder="*"
+            maxlength="50"
+            id="booked-places">
+            <p class="error fw-light mb-0" id="booked-places-error">
+                Egallangan o'rinlar soni noto'g'ri kiritildi!
             </p>
         </div>
         <div class="text-center p-0 m-0 w-100">
@@ -800,7 +773,7 @@
     </form>
 </div>
 <div class="text-format-panel fixed-bottom">
-    <p class="fw-light p-0 m-0">Text editor v1.0</p>
+    <p class="fw-light p-0 m-0">Text editor v1.1</p>
     <div class="format-buttons">
         <a type="button" class="format-button me-4" id="bold-text">
             <img src="{% static 'icons/bold.png' %}" height="15">
@@ -811,6 +784,37 @@
         <a type="button" class="format-button me-4" id="link-text">
             <img src="{% static 'icons/link.png' %}" height="15">
         </a>
+        <a type="button" class="format-button me-4" id="check-img">
+            <img src="{% static 'icons/check.png' %}" height="15">
+        </a>
+        <a type="button" class="format-button me-4" id="color-text">
+            <img src="{% static 'icons/colors.png' %}" height="15">
+        </a>
+        <div class="dropup-center dropup">
+            <a type="button" class="format-button me-4" data-bs-toggle="dropdown">
+                <img src="{% static 'icons/headings.png' %}" height="15">
+            </a>
+            <ul class="dropdown-menu">
+                <li type="button" class="dropdown-heading" id="heading-1">
+                    H1
+                </li>
+                <li type="button" class="dropdown-heading" id="heading-2">
+                    H2
+                </li>
+                <li type="button" class="dropdown-heading" id="heading-3">
+                    H3
+                </li>
+                <li type="button" class="dropdown-heading" id="heading-4">
+                    H4
+                </li>
+                <li type="button" class="dropdown-heading" id="heading-5">
+                    H5
+                </li>
+                <li type="button" class="dropdown-heading" id="heading-6">
+                    H6
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 <div class="modal fade" tabindex="-1" id="linkify-modal">
@@ -845,26 +849,50 @@
         </div>
     </div>
 </div>
+<div class="modal fade" tabindex="-1" id="colorify-modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="fw-light mt-2 ms-2">
+                    Rangni rgb/rgba/hash ko'rinishlarida kiritish mumkin
+                </h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="ms-2 me-2">
+                    <label class="form-label text-start ms-1" for="color-for-text">
+                        Rang
+                    </label>
+                    <input class="register-input"
+                    type="text"
+                    placeholder="rgb(255, 255, 255)/rgba(255, 255, 255, 50%)/#ffffff"
+                    id="color-for-text">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a type="button" class="btn-submit" id="colorify-btn">
+                    Kiritish
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     // Function-calls go here
     ChangeInputLabelOnInput('#book-file', 'book-file-p');
     ChangeInputLabelOnInput('#brand', 'brand-p');
     ChangeInputLabelOnInput('#sm-icon', 'sm-icon-p');
-    ChangeInputLabelOnInput('#terms', 'terms-p');
-    ChangeInputLabelOnInput('#welcome-img', 'welcome-img-p');
 
     // Event based functions go here
     $(document).ready(function () {
         const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
         const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
-        NewLinify('about-company');
         NewLinify('product-info');
         NewLinify('answer');
     });
     $('#bold-text').on('click', function (e) {
-        Boldify('title1');
-        Boldify('title2');
-        Boldify('about-company');
+        Boldify('title');
         Boldify('product-title');
         Boldify('product-info');
         Boldify('company-requisities');
@@ -909,7 +937,7 @@
                 },
                 function (data) {
                     if (data.status === 'deleted') {
-                        $('#book-id-for-deleting').css('border-color', '#fff');
+                        $('#book-id-for-deleting').css('border-color', '#000');
                         $('#book-id-for-deleting-not-found-error').css('display', 'none');
                         window.location.reload();
                     };
@@ -937,7 +965,7 @@
                 },
                 function (data) {
                     if (data.status === 'deleted') {
-                        $('#faq-id-for-deleting').css('border-color', '#fff');
+                        $('#faq-id-for-deleting').css('border-color', '#000');
                         $('#faq-id-for-deleting-not-found-error').css('display', 'none');
                         window.location.reload();
                     };
@@ -965,7 +993,7 @@
                 },
                 function (data) {
                     if (data.status === 'deleted') {
-                        $('#info-id-for-deleting').css('border-color', '#fff');
+                        $('#info-id-for-deleting').css('border-color', '#000');
                         $('#info-id-for-deleting-not-found-error').css('display', 'none');
                         window.location.reload();
                     };
@@ -975,6 +1003,34 @@
                         $('#info-id-for-deleting').css('border-color', 'red');
                         $('#info-id-for-deleting-not-found-error').css('display', 'block');
                         console.log('Cannot find information with the id ' + String($('#info-id-for-deleting').val()) + '!');
+                    };
+                },
+            );
+        } else {
+            return false;
+        }
+    });
+    $('#btn-delete-place').on('click', function (e) {
+        let id_valid = Valid('#place-id-for-deleting', '#place-id-for-deleting-error', '0-9');
+        if (id_valid) {
+            GetData(
+                '{% url "admin_panel:delete-place" %}',
+                'json',
+                {
+                    id: $('#place-id-for-deleting').val(),
+                },
+                function (data) {
+                    if (data.status === 'deleted') {
+                        $('#place-id-for-deleting').css('border-color', '#000');
+                        $('#place-id-for-deleting-not-found-error').css('display', 'none');
+                        window.location.reload();
+                    };
+                },
+                function (error) {
+                    if (error.status === 404) {
+                        $('#place-id-for-deleting').css('border-color', 'red');
+                        $('#place-id-for-deleting-not-found-error').css('display', 'block');
+                        console.log('Cannot find information with the id ' + String($('#place-id-for-deleting').val()) + '!');
                     };
                 },
             );
@@ -993,7 +1049,7 @@
                 },
                 function (data) {
                     if (data.status === 'deleted') {
-                        $('#sm-id-for-deleting').css('border-color', '#fff');
+                        $('#sm-id-for-deleting').css('border-color', '#000');
                         $('#sm-id-for-deleting-not-found-error').css('display', 'none');
                         window.location.reload();
                     };
@@ -1009,6 +1065,26 @@
         } else {
             return false;
         }
+    });
+    $('#check-img').on('click', function (e) {
+        Checkify('product-info');
+    });
+    $('#color-text').on('click', function (e) {
+        $('#colorify-modal').modal({show: false});
+        $('#colorify-modal').modal('show');
+    });
+    $('#colorify-btn').on('click', function (e) {
+        $('#color-for-text').css('border-color', '#000');
+        $('#color-for-text-error').css('display', 'none');
+        $('#colorify-modal').modal('hide');
+        Colorify('title', String($('#color-for-text').val()));
+        Colorify('product-title', String($('#color-for-text').val()));
+        Colorify('product-info', String($('#color-for-text').val()));
+        Colorify('company-requisities', String($('#color-for-text').val()));
+        Colorify('footer-motto', String($('#color-for-text').val()));
+        Colorify('question', String($('#color-for-text').val()));
+        Colorify('answer', String($('#color-for-text').val()));
+        document.getElementById('color-for-text').value = '';
     });
     $('#faq-form').on('submit', function (e) {
         let check_data = [
@@ -1036,10 +1112,26 @@
             );
         };
     });
+    $('#heading-1').on('click', function (e) {
+        Headingify('product-info', 2);
+    });
+    $('#heading-2').on('click', function (e) {
+        Headingify('product-info', 1.5);
+    });
+    $('#heading-3').on('click', function (e) {
+        Headingify('product-info', 1.17);
+    });
+    $('#heading-4').on('click', function (e) {
+        Headingify('product-info', 1);
+    });
+    $('#heading-5').on('click', function (e) {
+        Headingify('product-info', 0.83);
+    });
+    $('#heading-6').on('click', function (e) {
+        Headingify('product-info', 0.67);
+    });
     $('#italic-text').on('click', function (e) {
-        Italicize('title1');
-        Italicize('title2');
-        Italicize('about-company');
+        Italicize('title');
         Italicize('product-title');
         Italicize('product-info');
         Italicize('company-requisities');
@@ -1054,12 +1146,10 @@
     $('#linkify-btn').on('click', function (e) {
         let link_valid = Valid('#link-for-text', '#link-for-text-error', 'a-zA-Z0-9!@#$%&*-_+=:./\\\\');
         if (link_valid) {
-            $('#link-for-text').css('border-color', '#fff');
+            $('#link-for-text').css('border-color', '#000');
             $('#link-for-text-error').css('display', 'none');
             $('#linkify-modal').modal('hide');
-            Linkify('title1', String($('#link-for-text').val()));
-            Linkify('title2', String($('#link-for-text').val()));
-            Linkify('about-company', String($('#link-for-text').val()));
+            Linkify('title', String($('#link-for-text').val()));
             Linkify('product-title', String($('#link-for-text').val()));
             Linkify('product-info', String($('#link-for-text').val()));
             Linkify('company-requisities', String($('#link-for-text').val()));
@@ -1077,23 +1167,9 @@
         let check_data = [
             ValidateFileInput('#brand', '#brand-label', '#brand-error', ['.png', '.jpg', '.jpeg', '.svg', '.bmp']),
             Valid('#brand-height', '#brand-height-error', '0-9.'),
-            ValidateFileInput(
-                '#welcome-img', 
-                '#welcome-img-label', 
-                '#welcome-img-error', 
-                ['.png', '.jpg', '.jpeg', '.svg', '.bmp']
-            ),
-            Valid('#title1', '#title1-error', "a-zA-Z0-9\\s!-?:\\/;%@_+=.,*()[\]'`"),
-            Valid('#title2', '#title2-error', "a-zA-Z0-9\\s!-?:\\/;%@_+=.,*()[\]'`"),
-            Valid('#about-company', '#about-company-error', "a-zA-Z0-9\\s!-?:\\/;%@_+=.,*()[\]'`<>"),
+            Valid('#title', '#title-error', "a-zA-Z0-9\\s!-?:\\/;%@_+=.,*()[\]'`"),
             Valid('#product-title', '#product-title-error', "a-zA-Z0-9\\s!-?:\\/;%@_+=.,*()[\]'`"),
             Valid('#product-info', '#product-info-error', "a-zA-Z0-9\\s!-?:\\/;%@_+=.,*()[\]'`<>"),
-            ValidateFileInput(
-                '#terms', 
-                '#terms-label', 
-                '#terms-error', 
-                ['.docx', '.doc', '.pdf', '.pptx', '.ppt']
-            ),
             Valid('#company-requisities', '#company-requisities-error', "a-zA-Z0-9\\s!-?:\\/;%@_+=.,*()[\]'`"),
             Valid('#footer-motto', '#footer-motto-error', "a-zA-Z0-9\\s!-?:\\/;%@_+=.,*()[\]'`"),
             ValidateSelectInput('#socialmedia', '#social-media-error'),
@@ -1118,6 +1194,39 @@
                 },
             );
         }
+    });
+    $('#places-form').on('submit', function (e) {
+        let check_data = [
+            Valid('#available-places', '#available-places-error', '0-9'),
+            Valid('#booked-places', '#booked-places-error', '0-9'),
+        ];
+        if (check_data.includes(false)) {
+            return false;
+        } else {
+            e.preventDefault();
+            e.stopPropagation();
+            let data = new FormData(this);
+            PostMultipartData(
+                '{% url "admin_panel:add-place" %}',
+                'json',
+                data,
+                function (data) {
+                    if (data.status === 'added') {
+                        window.location.reload();
+                    };
+                },
+                function (error) {
+                    console.log('An error happened while POSTing the data!')
+                },
+            );
+        }
+    });
+    $('#product-info').on('keyup', function (e) {
+        if ($(this).val()) {
+            $('#product-info-output').html($(this).val());
+        } else {
+            $('#product-info-output').html(`<h3 class="text-center mb-0">Ma'lumotlar kiritilmagan</h3>`)
+        };
     });
     $('#sm-form').on('submit', function (e) {
         let check_data = [
@@ -1170,6 +1279,42 @@
         });
     };
 
+    function Checkify(element) {
+        let field = document.getElementById(element);
+        let oldValue = field.value;
+        if (
+                field.value && 
+                field.selectionStart !== undefined && 
+                field.selectionStart === field.selectionEnd
+        ) {
+            let startPos = field.selectionStart;
+            let endPos = field.selectionEnd;
+            let output1 = String(oldValue.slice(0, startPos)); 
+            let output2 = `<img src="{% static 'icons/check.png' %}" height="20">`;
+            let output3 = String(oldValue.slice(endPos));
+            field.value = output1 + output2 + output3;
+        };
+    };
+
+    function Colorify(element, color) {
+        let field = document.getElementById(element);
+        let oldValue = field.value;
+        if (
+                field.value && 
+                field.selectionStart !== undefined && 
+                field.selectionStart < field.selectionEnd
+        ) {
+            let startPos = field.selectionStart;
+            let endPos = field.selectionEnd;
+            let selectedText = field.value.substring(startPos, endPos).trim();
+            let output1 = String(oldValue.slice(0, startPos)) + '<span style="color: ' + color +'">';
+            let output2 = selectedText + '</span>' + String(oldValue.slice(endPos));
+            field.value = output1 + output2;
+            field.selectionStart = endPos + 7;
+            field.selectionEnd = endPos + 7;
+        };
+    };
+
     function GetData(url, dataType, input, on_success, on_error) {
         jQuery.ajax({
             url: url,
@@ -1188,6 +1333,26 @@
         });
     };
 
+    function Headingify(element, size) {
+        let field = document.getElementById(element);
+        let oldValue = field.value;
+        if (
+                field.value && 
+                field.selectionStart !== undefined && 
+                field.selectionStart < field.selectionEnd
+        ) {
+            let startPos = field.selectionStart;
+            let endPos = field.selectionEnd;
+            let selectedText = field.value.substring(startPos, endPos).trim();
+            let output1 = String(oldValue.slice(0, startPos));
+            let output2 = '<span style="font-size: ' + size + 'em;">' + selectedText + '</span>';
+            let output3 = String(oldValue.slice(endPos));
+            field.value = output1 + output2 + output3;
+            field.selectionStart = endPos + 10;
+            field.selectionEnd = endPos + 10;
+        };
+    };
+
     function Italicize(element) {
         let field = document.getElementById(element);
         let oldValue = field.value;
@@ -1201,6 +1366,8 @@
             let selectedText = field.value.substring(startPos, endPos).trim();
             let output = String(oldValue.slice(0, startPos)) + '_' + selectedText + '_' + String(oldValue.slice(endPos));
             field.value = output;
+            field.selectionStart = endPos + 1;
+            field.selectionEnd = endPos + 1;
         };
     };
 
@@ -1218,7 +1385,31 @@
             let output1 = String(oldValue.slice(0, startPos)) + '[' + selectedText + ']';
             let output2 = '(' + String(url) + ')' + String(oldValue.slice(endPos));
             field.value = output1 + output2;
+            field.selectionStart = endPos + url.length + 1;
+            field.selectionEnd = endPos + url.length + 1;
         };
+    };
+
+    function NewLinify(element) {
+        $('#' + element).on('keypress', event => {
+            let field = document.getElementById(element);
+            let oldValue = field.value;
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                if (
+                        field.value && 
+                        field.selectionStart !== undefined && 
+                        field.selectionStart === field.selectionEnd
+                ) {
+                    let startPos = field.selectionStart;
+                    let endPos = field.selectionEnd;
+                    let output = String(oldValue.slice(0, startPos)) + '<br/>' + String(oldValue.slice(endPos));
+                    field.value = output;
+                    field.selectionStart = startPos + 5;
+                    field.selectionEnd = startPos + 5;
+                };
+            };
+        });
     };
 
     function PostMultipartData(url, dataType, input, on_success, on_error) {
@@ -1242,27 +1433,11 @@
         });
     };
 
-    function Underlinify(element) {
-        let field = document.getElementById(element);
-        let oldValue = field.value;
-        if (
-                field.value && 
-                field.selectionStart !== undefined && 
-                field.selectionStart < field.selectionEnd
-        ) {
-            let startPos = field.selectionStart;
-            let endPos = field.selectionEnd;
-            let selectedText = field.value.substring(startPos, endPos).trim();
-            let output = String(oldValue.slice(0, startPos)) + '__' + selectedText + '__' + String(oldValue.slice(endPos));
-            field.value = output;
-        };
-    };
-
     function Valid(field, error, allowed) {
         let value = $(field).val();
         let not_allowed = RegExp("[^" + allowed + "]");
         if (value && is_space_only(value) === false && not_allowed.test(value) === false) {
-            $(field).css('border-color', '#fff');
+            $(field).css('border-color', '#000');
             $(error).css('display', 'none');
             return true;
         } else {
@@ -1278,7 +1453,7 @@
         let invalid;
         for (let i = 0; i < allowed_formats.length; i++) {
             if ($(field).val() && String(img).toLowerCase().endsWith(allowed_formats[i])) {
-                $(label).css('border-color', '#fff');
+                $(label).css('border-color', '#000');
                 $(error).css('display', 'none');
                 return true;
             } else {
@@ -1293,7 +1468,7 @@
     function ValidateSelectInput(field, error) {
         let selected = document.getElementById(field.replace('#', '')).selectedOptions;
         if (selected !== null && selected !== undefined && selected.length > 0 && selectedElementNotEmpty(selected)) {
-            $(field).css('border-color', '#fff');
+            $(field).css('border-color', '#000');
             $(error).css('display', 'none');
             return true;
         } else {

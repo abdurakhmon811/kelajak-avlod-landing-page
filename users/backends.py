@@ -27,7 +27,6 @@ class ClientAuthBackend(BaseBackend):
         phone_number = credentials['username']
         password = credentials['password']
         address = credentials['address'] if 'address' in credentials else None
-        email = credentials['email'] if 'email' in credentials else None
         childs_class = credentials['childs_class'] if 'childs_class' in credentials else None
         if names and phone_number and password and address and childs_class:
             check_data = [
@@ -35,7 +34,6 @@ class ClientAuthBackend(BaseBackend):
                 phone_number and sanitizer.valid(phone_number, r'[^0-9+]'),
                 password and sanitizer.valid(password, r'[^a-zA-Z0-9]'),
                 address and not is_space_only(address),
-                sanitizer.valid(email, r'[^a-zA-Z0-9@.-_]'),
                 childs_class and not is_space_only(childs_class),
             ]
             if False not in check_data:
@@ -43,7 +41,6 @@ class ClientAuthBackend(BaseBackend):
                     names=names,
                     phone_number=phone_number,
                     address=address,
-                    email=email if email and not is_space_only(email) else None,
                     childs_class=childs_class,
                 )
                 client.set_password(password)
@@ -52,7 +49,7 @@ class ClientAuthBackend(BaseBackend):
                 client.date_joined = time.strftime(r'%Y-%m-%d %H:%M:%S', time.localtime())
                 client.save()
                 return client
-        elif not names and not address and not email and not childs_class and phone_number and password:
+        elif not names and not address and not childs_class and phone_number and password:
             check_data = [
                 phone_number and sanitizer.valid(phone_number, r'[^0-9+]'),
                 password and sanitizer.valid(password, r'[^a-zA-Z0-9]'),

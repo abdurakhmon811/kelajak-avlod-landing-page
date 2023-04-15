@@ -11,7 +11,6 @@
                     <th scope="col">FISh</th>
                     <th scope="col">Telefon raqam</th>
                     <th scope="col">Manzil</th>
-                    <th scope="col">Elektron pochta</th>
                     <th scope="col">Farzand maktabi va sinfi</th>
                     <th scope="col">O'chirish</th>
                 </tr>
@@ -22,11 +21,6 @@
                         <td>{{ client.names }}</td>
                         <td>{{ client.phone_number }}</td>
                         <td>{{ client.address }}</td>
-                        {% if client.email %}
-                            <td>{{ client.email }}</td>
-                        {% else %}
-                            <td style="color: red;">Mavjud emas</td>
-                        {% endif %}
                         <td>{{ client.childs_class }}</td>
                         {% if not client.is_superuser and not client.is_admin %}
                             <td>

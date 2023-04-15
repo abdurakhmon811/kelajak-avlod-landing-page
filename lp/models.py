@@ -44,13 +44,9 @@ class IndexInfo(models.Model):
 
     brand = models.ImageField(upload_to='images', null=True)
     brand_height = models.PositiveIntegerField(null=True)
-    welcome_img = models.ImageField(upload_to='images', null=True)
-    title1 = models.CharField(max_length=200)
-    title2 = models.CharField(max_length=200)
-    about_company = models.TextField()
+    title = models.CharField(max_length=200, null=True)
     product_title = models.CharField(max_length=200)
     product_info = models.TextField()
-    terms = models.FileField(upload_to='files', null=True)
     company_requisities = models.CharField(max_length=200, null=True)
     footer_motto = models.CharField(max_length=300)
     media = models.ManyToManyField(SocialMedia)
@@ -60,4 +56,19 @@ class IndexInfo(models.Model):
 
     def __str__(self):
         
-        return self.title1 
+        return self.title
+
+
+class Place(models.Model):
+    """
+    A model for handling how many places are in total available for a course and how many of them are taken.
+    """
+
+    available_places = models.PositiveIntegerField(null=True)
+    booked_places = models.PositiveIntegerField(null=True)
+
+    objects = models.Manager()
+
+    def __str__(self):
+
+        return self.available_places

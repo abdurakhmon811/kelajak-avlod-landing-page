@@ -3,7 +3,7 @@ from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 #from django_ratelimit.decorators import ratelimit
-from .models import Book, FAQ, IndexInfo
+from .models import Book, FAQ, IndexInfo, Place
 
 
 #@ratelimit(key='ip', rate='10/m')
@@ -13,14 +13,17 @@ def index(request: HttpRequest):
     """
     
     information = None
+    place = None
     faq = FAQ.objects.all()
     try:
         information = IndexInfo.objects.latest('date_added')
-    except (IndexInfo.DoesNotExist, FAQ.DoesNotExist):
+        place = Place.objects.latest('id')
+    except (IndexInfo.DoesNotExist, Place.DoesNotExist):
         pass
 
     context = {
         'information': information,
+        'place': place,
         'faq': faq,
     }
     return render(request, 'lp/index.html', context)

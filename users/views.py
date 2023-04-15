@@ -26,13 +26,11 @@ def register(request: HttpRequest):
         names = request.POST.get('names')
         phone_number = request.POST.get('phone_number')
         address = request.POST.get('address')
-        email = request.POST.get('email')
         childs_class = request.POST.get('childs_class')
         check_data = [
             names and not is_space_only(names),
             phone_number and sanitizer.valid(phone_number, r'[^0-9+]'),
             address and not is_space_only(address),
-            sanitizer.valid(email, r'[^a-zA-Z0-9@.-_]'),
             childs_class and not is_space_only(childs_class),
         ]
         if False not in check_data:
@@ -44,7 +42,6 @@ def register(request: HttpRequest):
                     username=phone_number,
                     password=generate_token(),
                     address=address,
-                    email=email if email and not is_space_only(email) else None,
                     childs_class=childs_class,
                 )
                 if client:

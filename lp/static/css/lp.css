@@ -1,4 +1,10 @@
 @charset "UTF-8";
+@font-face {
+    font-family: 'montserratthin';
+    src: url('../fonts/Montserrat-BoldItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 /* HTML Elements */
 a {
@@ -6,6 +12,7 @@ a {
 }
 body {
     padding-top: 80px;
+    font-family: 'montserratthin';
 }
 p {
     font-weight: 300;
@@ -43,6 +50,11 @@ p {
     margin-top: 4rem;
     padding: 2rem;
 }
+.admin-panel-row {
+    display: flex;
+    margin: 0;
+    width: 100%;
+}
 .auth-link {
     color: #000;
     font-weight: 300;
@@ -50,8 +62,8 @@ p {
     transition: all 0.2s ease-in-out;
 }
 .auth-link:hover {
-    color: rgb(252, 80, 0);
-    text-shadow: 0 0 1.2rem rgb(252, 80, 0);
+    color: rgb(233, 217, 0);
+    text-shadow: 0 0 1.2rem rgb(233, 217, 0);
     transform: scale(1.1);
 }
 .auth-link:active {
@@ -127,6 +139,20 @@ p {
     opacity: 50%;
     pointer-events: none;
 }
+.discount-percent {
+    animation: gradient 12s linear infinite;
+    background: linear-gradient(to right, rgb(216, 0, 0), rgb(47, 201, 0), rgb(216, 202, 0), rgb(216, 0, 0));
+    background-size: 400%;
+    background-clip: text;
+    font-size: larger;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+@keyframes gradient {
+    to {
+        background-position: 400% center;
+    }
+}
 .down {
     height: 80px;
 }
@@ -161,6 +187,22 @@ p {
         margin-top: 0.7rem;
     }
 }
+.dropdown-heading {
+    border-radius: 0;
+    color: #fff;
+    margin: 0;
+    padding: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+.dropdown-heading:hover, .dropdown-heading:active {
+    color: #fff;
+    background-color: #ff6742;
+}
+.dropdown-menu {
+    background-color: #ff3300;
+    text-align: center;
+}
 .error {
     color: red;
     display: none;
@@ -194,6 +236,7 @@ p {
 .footer-container {
     background: #fff;
     border: 3px solid yellow;
+    border-bottom: none;
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
     color: #000;
@@ -227,78 +270,10 @@ p {
     display: flex;
     justify-content: space-between;
 }
-.instruction-div {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    object-fit: cover;
-    overflow-x: scroll;
-    width: 100%;
-}
-.instruction-img {
+.html-output {
+    border: 3px solid rgb(216, 0, 0);
     border-radius: 2rem;
-    max-height: 400px;
-    max-width: 700px;
-}
-.jumb {
-    border-bottom-left-radius: 2rem;
-    border-bottom-right-radius: 2rem;
-    height: 600px;
-    overflow: hidden;
-    position: relative;
-    text-align: center;
-}
-@media only screen and (max-width: 1250px) and (min-width: 1000px) {
-    .jumb {
-        height: 650px;
-    }
-}
-@media only screen and (max-width: 1000px) and (min-width: 640px) {
-    .jumb {
-        height: 700px;
-    }
-}
-@media only screen and (max-width: 640px) and (min-width: 540px) {
-    .jumb {
-        height: 750px;
-    }
-}
-@media only screen and (max-width: 540px) and (min-width: 420px) {
-    .jumb {
-        height: 850px;
-    }
-}
-@media only screen and (max-width: 420px) and (min-width: 370px) {
-    .jumb {
-        height: 950px;
-    }
-}
-@media only screen and (max-width: 370px) {
-    .jumb {
-        height: 1050px;
-    }
-}
-.main-image {
-    filter: brightness(50%);
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    width: 100%;
-}
-.main-image-overlay {
-    animation: gradient 12s ease infinite;
-    animation-direction: reverse;
-    height: 100%;
-    padding: 3rem;
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
-@media only screen and (max-width: 576px) {
-    .main-image-overlay {
-        padding: 2.5rem;
-    }
+    padding: 1.5rem;
 }
 .main-info-form {
     margin: auto;
@@ -377,15 +352,15 @@ p {
 }
 .product-container {
     background: #fff;
-    border: 1px solid #fff;
+    border: 3px solid rgb(216, 0, 0);
     border-radius: 2rem;
     color: #000;
     height: fit-content;
     margin: auto;
     margin-bottom: 4rem;
-    margin-top: 6rem;
+    margin-top: 2rem;
+    max-width: 700px;
     padding: 3rem;
-    width: 100%;
 }
 .product-information {
     font-size: 1.5rem;
@@ -397,6 +372,86 @@ p {
     .product-row {
         flex-direction: column-reverse;
     }
+}
+@media only screen and (max-width: 750px) {
+    .product-container {
+        width: 90%;
+    }
+}
+.progress {
+    animation: progress-bar 3s ease-in-out infinite;
+    animation-direction: reverse;
+    background: linear-gradient(to right, rgb(216, 0, 0), rgb(233, 217, 0) 50%, rgb(216, 0, 0) 50%);
+    background-size: 200%;
+    border-radius: 0;
+    height: 100%;
+    position: absolute;
+}
+@keyframes progress-bar {
+    to {
+        background-position: 200% 0%;
+    }
+}
+.progress-bar {
+    background-color: aliceblue;
+    border: 1px solid rgb(216, 0, 0);
+    border-radius: 0.3rem;
+    color: #fff;
+    font-weight: 300;
+    height: 30px;
+    margin: auto;
+    max-width: 500px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+}
+@media only screen and (max-width: 550px) {
+    .progress-bar {
+        width: 90%;
+    }
+}
+.progress-header {
+    color: #000;
+    display: flex;
+    font-weight: 300;
+    margin: auto;
+    margin-bottom: 0.5rem;
+    margin-top: 4rem;
+    max-width: 500px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+@media only screen and (max-width: 550px) {
+    .progress-header {
+        width: 90%;
+    }
+}
+.rate {
+    border: 3px solid rgb(38, 189, 0);
+    border-radius: 2rem;
+    margin: 0;
+    max-width: 300px;
+    padding: 2rem;
+}
+.rate-col-1 {
+    display: flex;
+    justify-content: end !important;
+    margin-bottom: 2rem;
+    width: fit-content !important;
+}
+.rate-col-2 {
+    display: flex;
+    justify-content: start !important;
+    margin-bottom: 2rem;
+    width: fit-content !important;
+}
+.rate-row {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    margin-top: 4rem;
+    width: 100%;
 }
 .register-div {
     display: flex;
@@ -427,20 +482,6 @@ p {
     color: #000;
     font-weight: 300;
 }
-.terms-checkbox {
-    min-width: 15px;
-    transition: all 0.2s ease-in-out;
-}
-.terms-checkbox:hover {
-    transform: scale(1.1);
-}
-.terms-checkbox:active {
-    transform: scale(0.9);
-}
-.terms-div {
-    align-items: center;
-    display: flex;
-}
 .text-format-panel {
     align-items: center;
     background-color: #ff3300;
@@ -455,7 +496,7 @@ p {
     margin: auto;
     margin-bottom: 2rem;
     max-width: 600px;
-    overflow-x: hidden;
+    overflow: visible;
     padding: 1rem;
     width: 100%;
 }
@@ -499,4 +540,7 @@ p {
     margin: 0;
     max-width: 100%;
     padding-top: 2rem;
+}
+#progress-percent {
+    text-align: end;
 }

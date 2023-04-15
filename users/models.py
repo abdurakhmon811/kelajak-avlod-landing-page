@@ -82,7 +82,6 @@ class Client(AbstractBaseUser):
     phone_number = models.CharField(max_length=13, unique=True, primary_key=True)
     password = models.CharField(max_length=128)
     address = models.CharField(max_length=250)
-    email = models.EmailField(null=True, blank=True)
     childs_class = models.CharField(max_length=20)
 
     is_active = models.BooleanField(default=False)
