@@ -12,6 +12,7 @@
                     <th scope="col">Telefon raqam</th>
                     <th scope="col">Manzil</th>
                     <th scope="col">Farzand maktabi va sinfi</th>
+                    <th scope="col">Ro'yxatdan o'tgan sana</th>
                     <th scope="col">O'chirish</th>
                 </tr>
             </thead>
@@ -22,6 +23,7 @@
                         <td>{{ client.phone_number }}</td>
                         <td>{{ client.address }}</td>
                         <td>{{ client.childs_class }}</td>
+                        <td>{{ client.date_joined|date:'d.m.Y H:i' }}</td>
                         {% if not client.is_superuser and not client.is_admin %}
                             <td>
                                 <a type="button" 

@@ -17,7 +17,7 @@ def clients(request: HttpRequest):
     if not request.user.is_superuser or not request.user.is_admin:
         raise Http404
 
-    people = Client.objects.all().order_by("names")
+    people = Client.objects.all().order_by("date_joined")
     people_count = Client.objects.count()
 
     context = {
